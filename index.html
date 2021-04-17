@@ -3,6 +3,7 @@
   <head>
     <script src="./jquery-3.4.1.slim.min.js"></script>
     <script type="text/javascript" src="./app.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -14,9 +15,35 @@
       <label for="lblTime">TIME:</label>
       <input id="lblTime" type="text" />
     </div>
+
+    <button id="newGame">start new Game!</button>
+
     <div id="game">
       <canvas id="canvas" height="600" width="600"></canvas>
-      <button id="newGame">start new Game!</button>
+      <img
+        id="monster1"
+        class="monsters"
+        src="media/monster.jpg"
+        alt="first monster image"
+      />
+      <img
+        id="monster2"
+        class="monsters"
+        src="media/monster.jpg"
+        alt="second monster image"
+      />
+      <img
+        id="monster3"
+        class="monsters"
+        src="media/monster.jpg"
+        alt="third monster image"
+      />
+      <img
+        id="monster4"
+        class="monsters"
+        src="media/monster.jpg"
+        alt="fourth monster image"
+      />
     </div>
   </body>
 </html>
