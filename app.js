@@ -6,26 +6,31 @@ var score;
 var pac_color;
 var start_time;
 var time_elapsed;
-var interval;
+var intervalTimer;
 
 
 var life;
 var monsters;
 var numOfMonsters;
 var monsterImage;
+var moveIterator;
 //need to add 4 monsters images
 var movingScoreImage;
-var movingScore;
+var movingScore = new Object();
 var isMovingEaten;
 
 var keysDown;
+var dirPacman;
 // user inputs for settings
 var ballsCount;
 var counter5;
 var counter15;
 var counter25;
+var color5;
+var color15;
+var color25;
 
-var timeLimit = 60
+var timeLimit;
 
 //variables for movment from user
 var up;
@@ -34,6 +39,12 @@ var left;
 var right;
 
 
+//toggle test - need to fix
+$(document).ready(function(){
+	$("#newGame").click(function(){
+	  $("#settings").toggle();
+	});
+  });
 
 
 window.addEventListener("load", setUpGame, false);
@@ -49,12 +60,8 @@ function setUpGame(){
 	movingScoreImage = document.getElementById("movingScore")
 	monsterImage = document.getElementById("monster1");
 	monsters = new Array();
-	numOfMonsters = 4; // user input
-	for (var i = 0; i < numOfMonsters; i++){
-		monsters[i] = {};
-	}
+	moveIterator = 0;
 
-	movingScore = {};
 	isMovingEaten = false;
 	
 	keysDown = {};
@@ -74,8 +81,14 @@ function newGame(){
 
 // need to add settings inside
 function reset(){
+	isMovingEaten = false;
+	keysDown = {};
 	life = 5;
 	score = 0;
+	moveIterator = 0;
+	if (intervalTimer != undefined){
+		window.clearInterval(intervalTimer);
+	}
 	//settings
 	//move to settings
 }
@@ -88,23 +101,22 @@ function monstersLocations(){
 
 	for(var i = 0; i < numOfMonsters; i++){
 		if (i == 0){
-			monsters[0].x = 0;
-			monsters[0].y = 0;
+			monsters[0].i = 0;
+			monsters[0].j = 0;
 		}
 		else if (i == 1){
-			monsters[1].x = 60*9;
-			// monsters[1].x = 9;
-			monsters[1].y = 0;
+			monsters[1].i = 9;
+			monsters[1].j = 0;
 		
 		}
 		else if (i == 2){
-			monsters[2].x = 0;
-			monsters[2].y = 60*9;
+			monsters[2].i = 0;
+			monsters[2].j = 9;
 		}
 
 		else if (i == 3){
-			monsters[3].x = 60*9;
-			monsters[3].y = 60*9;
+			monsters[3].i = 9;
+			monsters[3].j = 9;
 		}
 	}
 }
@@ -122,23 +134,27 @@ function randomLocatePacman(){
 
 function movingScoreLocation(){
 	board[5][4] = 50;
-	movingScore.x = 5*60;
-	movingScore.y = 4*60;
+	movingScore.i = 5;
+	movingScore.j = 4;
 }
 
 function prepareBoard(){
 	board = new Array();
 	pac_color = "yellow";
-	// var cnt = 100; //?
-	// food_remain = 50;
-	// var pacman_remain = 1;
 
-	ballsCount = 50; // user
+	userSettings();
+
+	// ballsCount = document.getElementById("foodAmount").value; // user
 	counter5 = Math.floor(ballsCount * 0.6);
 	counter15 = Math.floor(ballsCount * 0.3);
 	counter25 = Math.floor(ballsCount * 0.1);
 
-	// check if need to add sum of balls equal to ballsCount and change the perecentages
+	// complete balls to user's amount
+	let diff = ballsCount - (counter5+counter15+counter25);
+	if (diff > 0){
+		counter5 += diff;
+	}
+
 
 	for (var i = 0; i < 10; i++) {
 		board[i] = new Array();
@@ -184,10 +200,32 @@ function prepareBoard(){
 
 }
 
+
+function userSettings(){
+	//Food user inputs
+	ballsCount = document.getElementById("foodAmount").value;
+	color5 = document.getElementById("5").value;
+	color15 = document.getElementById("15").value;
+	color25 = document.getElementById("25").value;
+
+	//Monsters user inputs
+	numOfMonsters = document.getElementById("monstersAmount").value;
+	for (var i = 0; i < numOfMonsters; i++){
+		monsters[i] = new Object();
+	}
+
+	//Time user inputs
+	let minutes = parseInt(document.getElementById("minutes").value);
+	let seconds = parseInt(document.getElementById("seconds").value);
+
+	timeLimit = minutes * 60 + seconds;
+	// alert(timeLimit);
+
+}
+
 function main(){
 	checkTimeLimit();
 	UpdatePosition();
-
 	Draw();
 	detectMonstersCollisions();
 	detectMovingScoreCollisions();
@@ -204,16 +242,10 @@ function checkTimeLimit(){
 
 function detectMovingScoreCollisions(){
 	if (isMovingEaten == false){
-		let colsDist = Math.abs(shape.i*60 - movingScore.x);
-		let rowsDist = Math.abs(shape.j*60 - movingScore.y);
+		let colsDist = Math.abs(shape.i - movingScore.i);
+		let rowsDist = Math.abs(shape.j - movingScore.j);
 	
-		if (colsDist < 60 && rowsDist < 60){
-			alert("colsDist: " + colsDist);
-			alert("rowsDist: " + rowsDist);
-			alert("x: " +movingScore.x);
-			alert(movingScore.y);
-			alert("shape i: "+shape.i);
-			alert("shape j: "+shape.j);
+		if (colsDist < 1 && rowsDist < 1){
 			score += 50;
 			isMovingEaten = true;
 			//check
@@ -225,11 +257,9 @@ function detectMovingScoreCollisions(){
 
 function detectMonstersCollisions(){
 	for (var i = 0; i < numOfMonsters; i++){
-		xIndex = Math.floor(monsters[i].x/60);
-		yIndex = Math.floor(monsters[i].y/60);
 
-		let colsDist = Math.abs(shape.i - xIndex);
-		let rowsDist = Math.abs(shape.j - yIndex);
+		let colsDist = Math.abs(shape.i - monsters[i].i);
+		let rowsDist = Math.abs(shape.j - monsters[i].j);
 
 		if (colsDist < 1 && rowsDist < 1){
 			life--;
@@ -288,24 +318,28 @@ function UpdatePosition() {
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 1) {
 			shape.j--;
+			dirPacman = "up";
 		}
 	}
 	//down
 	if (x == 2) {
 		if (shape.j < 9 && board[shape.i][shape.j + 1] != 1) {
 			shape.j++;
+			dirPacman = "down";
 		}
 	}
 	//left
 	if (x == 3) {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != 1) {
 			shape.i--;
+			dirPacman = "left";
 		}
 	}
 	//right
 	if (x == 4) {
 		if (shape.i < 9 && board[shape.i + 1][shape.j] != 1) {
 			shape.i++;
+			dirPacman = "right";
 		}
 	}
 	if (board[shape.i][shape.j] == 5) {
@@ -321,15 +355,19 @@ function UpdatePosition() {
 
 	board[shape.i][shape.j] = 2;
 
-	updateMonstersPosition();
-
-	updateMovingScorePosition();
+	//slower movement of monsters and movingScore
+	if (moveIterator % 5 == 0){
+		updateMonstersPosition();
+		updateMovingScorePosition();
+		// moveIterator = 0;
+	}
+	++moveIterator;
 
 	// if (score >= 20 && time_elapsed <= 10) {
 	// 	pac_color = "green";
 	// }
 	if (score == 400) {
-		window.clearInterval(interval);
+		window.clearInterval(intervalTimer);
 		window.alert("Game completed");
 	} 
 }
@@ -338,20 +376,17 @@ function UpdatePosition() {
 function updateMonstersPosition(){
 	for (var i = 0; i < numOfMonsters; i++){
 
-		xIndex = Math.floor(monsters[i].x/60);
-		yIndex = Math.floor(monsters[i].y/60);
-
-		let colsDist = shape.i - xIndex;
-		let rowsDist = shape.j - yIndex;
+		let colsDist = shape.i -  monsters[i].i;
+		let rowsDist = shape.j - monsters[i].j;
 
 		// monster need to move up-down
 		if (Math.abs(rowsDist) > Math.abs(colsDist)){
 			// // monster need to move down
-			if (rowsDist > 0 && board[xIndex][yIndex+1] != 1){
+			if (rowsDist > 0 && board[monsters[i].i][monsters[i].j+1] != 1){
 				moveMonsterDown(monsters[i]);
 			}
 			// monster need to move up
-			else if(rowsDist <= 0 && board[xIndex][yIndex-1] != 1){
+			else if(rowsDist <= 0 && board[monsters[i].i][monsters[i].j-1] != 1){
 				moveMonsterUp(monsters[i]);
 			}
 			// else if(rowsDist == 0){
@@ -366,11 +401,11 @@ function updateMonstersPosition(){
 		// monster need to move left-right
 		else{
 			// // monster need to move right
-			if (colsDist > 0 && board[xIndex+1][yIndex] != 1){
+			if (colsDist > 0 && board[monsters[i].i+1][monsters[i].j] != 1){
 				moveMonsterRight(monsters[i]);
 			}
 			// monster need to move left
-			else if(colsDist <= 0 && board[xIndex-1][yIndex] != 1) {
+			else if(colsDist <= 0 && board[monsters[i].i-1][monsters[i].j] != 1) {
 				moveMonsterLeft(monsters[i]);
 			}
 			// else if (colsDist == 0){
@@ -386,43 +421,44 @@ function updateMonstersPosition(){
 }
 
 function moveMonsterLeft(monster){
-	monster.x -= 5;
+	monster.i--;
 }
+
 function moveMonsterRight(monster){
-	monster.x += 5;
+	monster.i++;
 }
 
 function moveMonsterUp(monster){
-	monster.y -= 5;
+	monster.j--;
 }
 
 function moveMonsterDown(monster){
-	monster.y += 5;
+	monster.j++;
 }
 
 function updateMovingScorePosition(){
 	let direction =  Math.floor(Math.random() * 4);
-	let xPosition = Math.floor(movingScore.x/60);
-	let yPosition = Math.floor(movingScore.y/60);
+	let xPosition = movingScore.i;
+	let yPosition = movingScore.j;
 
 	// up
 	if (direction == 0 && yPosition-1 > 0 && board[xPosition][yPosition-1] != 1){
-		movingScore.y -= 20;
+		movingScore.j--;
 	}
 
 	// down
 	else if (direction == 1 && yPosition+1 < 9 && board[xPosition][yPosition+1] != 1){
-		movingScore.y += 20;
+		movingScore.j++;
 	}
 
 	// left
 	else if (direction == 2 && xPosition-1 > 0 && board[xPosition-1][yPosition] != 1){
-		movingScore.x -= 20;
+		movingScore.i--;
 	}
 
 	// right
 	else if (direction == 3 && xPosition+1 < 9 && board[xPosition+1][yPosition] != 1){
-		movingScore.x += 20;
+		movingScore.i++;
 	}
 }
 
@@ -436,33 +472,29 @@ function Draw() {
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
 			if (board[i][j] == 2) {
-				context.beginPath();
-				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-				context.lineTo(center.x, center.y);
-				context.fillStyle = pac_color; //color
-				context.fill();
-				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
-				context.fill();
+				if (dirPacman == "up"){
+					drawDirectedPacman(1.65, 1.35, center.x, center.y, -15, -5);
+				}
+				else if (dirPacman == "down"){
+					drawDirectedPacman(0.65, 0.35, center.x, center.y, 15, 5);
+				}
+				else if (dirPacman == "left"){
+					drawDirectedPacman(1.15, 0.85, center.x, center.y, -5, -15);
+				}
+
+				else {
+					drawDirectedPacman(0.15, 1.85, center.x, center.y, 5, -15);
+				}
+				
 			} else if (board[i][j] == 5) {
-				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
-				// context.fillStyle = "user color"; //
-				context.fill();
+				drawCircles(center.x, center.y, 0, 0, color5, 5);
+
 			} else if (board[i][j] == 15) {
-				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "red"; //color
-				// context.fillStyle = "user color"; //
-				context.fill();
+				drawCircles(center.x, center.y, 0, 0, color15, 10);
+
 			} else if (board[i][j] == 25) {
-				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "blue"; //color
-				// context.fillStyle = "user color"; //
-				context.fill();
+				drawCircles(center.x, center.y, 0, 0, color25, 15);
+
 			} else if (board[i][j] == 1) {
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 60, 60);
@@ -472,14 +504,31 @@ function Draw() {
 
 			else if (board[i][j] == 3) {
 				for (var k = 0; k < numOfMonsters; k++){
-					context.drawImage(monsterImage, monsters[k].x, monsters[k].y, 60, 60);
+					// alert(monsters[k].i);
+					context.drawImage(monsterImage, monsters[k].i*60, monsters[k].j*60, 60, 60);
 					// context.drawImage(monsterImage, monsters[k].x*60, monsters[k].y*60, 60, 60);
 				}
 			}
 
-			else if (board[i][j] == 50) {
-				context.drawImage(movingScoreImage, movingScore.x, movingScore.y, 60, 60);
+			else if (board[i][j] == 50 && isMovingEaten == false) {
+				context.drawImage(movingScoreImage, movingScore.i*60, movingScore.j*60, 60, 60);
 			}
 		}
 	}
+}
+
+function drawDirectedPacman(startAngle, endAngle, xCenter, yCenter, xDist, yDist){
+	context.beginPath();
+	context.arc(xCenter, yCenter, 30, startAngle * Math.PI, endAngle * Math.PI); // half circle
+	context.lineTo(xCenter, yCenter);
+	context.fillStyle = pac_color;
+	context.fill();
+	drawCircles(xCenter, yCenter, xDist, yDist, "black", 5) //pac eye
+}
+
+function drawCircles(xCenter, yCenter, xDist, yDist, color, radius){
+	context.beginPath();
+	context.arc(xCenter + xDist, yCenter + yDist, radius, 0, 2 * Math.PI);
+	context.fillStyle = color;
+	context.fill();
 }
