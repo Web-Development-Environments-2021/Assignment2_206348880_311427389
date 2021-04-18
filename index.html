@@ -3,7 +3,21 @@
   <head>
     <script src="./jquery-3.4.1.slim.min.js"></script>
     <script type="text/javascript" src="./app.js"></script>
+    <!-- <script type="text/javascript" src="./settings.js"></script> -->
     <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#accordion").accordion();
+      });
+    </script>
   </head>
 
   <body>
@@ -17,6 +31,114 @@
     </div>
 
     <button id="newGame">start new Game!</button>
+
+    <div id="settings">
+      <h2>Game Settings</h2>
+
+      <div id="accordion">
+        <h3>Food</h3>
+        <div id="foodSettings">
+          <p>Amount Of Food:</p>
+          <input
+            type="range"
+            min="50"
+            max="90"
+            value="70"
+            class="foodSlider"
+            id="foodAmount"
+          />
+          <p>Value: <span id="foodValue"></span></p>
+
+          <!-- move to settings.js -->
+          <script>
+            // food settings
+            var slider = document.getElementById("foodAmount");
+            var output = document.getElementById("foodValue");
+            output.innerHTML = slider.value; // Display the default slider value
+
+            // Update the current slider value (each time you drag the slider handle)
+            slider.oninput = function () {
+              output.innerHTML = this.value;
+            };
+          </script>
+
+          <p>Different Food Colors:</p>
+          <div>
+            <input type="color" id="5" name="5" value="#e66465" />
+            <label>5 Points Ball</label>
+          </div>
+
+          <div>
+            <input type="color" id="15" name="15" value="#f6b73c" />
+            <label>15 Points Ball</label>
+          </div>
+
+          <div>
+            <input type="color" id="25" name="25" value="#d925fd" />
+            <label>25 Points Ball</label>
+          </div>
+        </div>
+
+        <h3>Monsters</h3>
+        <div>
+          <label>Monsters Amount: (between 1 and 4):</label>
+          <input
+            type="number"
+            id="monstersAmount"
+            name="quantity"
+            min="1"
+            max="4"
+          />
+          <input type="submit" value="OK" />
+        </div>
+
+        <h3>Keyboard</h3>
+        <div>
+          <p></p>
+        </div>
+
+        <h3>Time</h3>
+        <div>
+          <label>Minutes:</label>
+          <input type="number" id="minutes" min="1" max="7" />
+          <!-- check time limits -->
+          <label>Seconds:</label>
+          <input type="number" id="seconds" min="0" max="55" step="5" />
+          <input type="submit" value="OK" />
+        </div>
+
+        <h3>Sound</h3>
+        <div>
+          <p></p>
+        </div>
+      </div>
+
+      <form action="">
+        <!-- <button class="settingButton">Food</button>
+        <button class="settingButton">Monsters</button>
+        <button class="settingButton">Keyboard</button>
+        <button class="settingButton">Time</button>
+        <button class="settingButton">Music/sound</button> -->
+        <button class="settingButton">Default</button>
+        <button class="settingButton">Random</button>
+      </form>
+
+      <div id="Food" class="settingDiv">
+        <!-- <p>Amount Of Food:</p>
+        <input
+          type="range"
+          min="50"
+          max="90"
+          value="70"
+          class="foodSlider"
+          id="foodAmount"
+        /> -->
+      </div>
+      <div id="Monsters" class="settingDiv"></div>
+      <div id="Keyboard" class="settingDiv"></div>
+      <div id="Music/sound" class="settingDiv"></div>
+      <div id="Random" class="settingDiv"></div>
+    </div>
 
     <div id="game">
       <canvas id="canvas" height="600" width="600"></canvas>
