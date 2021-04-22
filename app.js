@@ -19,6 +19,8 @@ var movingScoreImage;
 var movingScore = new Object();
 var isMovingEaten;
 
+var clockImage;
+
 var keysDown;
 var dirPacman;
 // user inputs for settings
@@ -54,13 +56,16 @@ function setUpGame(){
 	context = canvas.getContext("2d");
 
 	document.getElementById("newGame").addEventListener("click", newGame, false)
+
 	// add backgorund
 	// add music
 	// add images
-	movingScoreImage = document.getElementById("movingScore")
+	movingScoreImage = document.getElementById("movingScore");
 	monsterImage = document.getElementById("monster1");
 	monsters = new Array();
 	moveIterator = 0;
+
+	clockImage = document.getElementById("clock");
 
 	isMovingEaten = false;
 	
@@ -69,6 +74,9 @@ function setUpGame(){
 
 	addEventListener("keydown", function (e) {keysDown[e.keyCode] = true;}, false);
 	addEventListener("keyup", function (e) {delete keysDown[e.keyCode];}, false);
+
+	setDefaultSettings();
+
 }
 
 function newGame(){
@@ -91,6 +99,77 @@ function reset(){
 	}
 	//settings
 	//move to settings
+}
+
+function setDefaultKeyboard(){
+	up = 38;
+	document.getElementById("up").value = "ArrowUp"
+	down = 40;
+	document.getElementById("down").value = "ArrowDown"
+	left = 37;
+	document.getElementById("left").value = "ArrowLeft"
+	right = 39;
+	document.getElementById("right").value = "ArrowRight"
+
+}
+
+
+function setDefaultSettings(){
+	//default keyboard
+	setDefaultKeyboard();
+
+	//default food number
+	document.getElementById("foodAmount").value = 70;
+	document.getElementById("foodValue").innerHTML = 70;
+
+	//default food colors
+	document.getElementById("5").value = "#e66465";
+	document.getElementById("15").value = "#f6b73c";
+	document.getElementById("25").value = "#d925fd";
+
+
+	//default time
+	document.getElementById("minutes").value = 1;
+	document.getElementById("seconds").value = 0;
+
+
+	//default num of monsters
+	document.getElementById("monstersAmount").value = 1;
+
+
+	//default sound
+}
+
+function setRandomSettings(){
+	//default keyboard
+	setDefaultKeyboard();
+
+	//default food number
+	let randomFoodAmount = Math.floor(Math.random() * 41) + 50;
+	document.getElementById("foodAmount").value = randomFoodAmount;
+	document.getElementById("foodValue").innerHTML = randomFoodAmount;
+
+	//default food colors
+	let randomColor5 = '#'+Math.floor(Math.random()*16777215).toString(16);
+	document.getElementById("5").value = randomColor5;
+	// document.getElementById("5").value = "#e66465";
+	let randomColor15 = '#'+Math.floor(Math.random()*16777215).toString(16);
+	document.getElementById("15").value = randomColor15;
+	let randomColor25 = '#'+Math.floor(Math.random()*16777215).toString(16);
+	document.getElementById("25").value = randomColor25;
+
+
+	//default time
+	// max time for game???
+	let randomMinutes =  Math.floor(Math.random() * 5) + 1;
+	document.getElementById("minutes").value = randomMinutes;
+	let randomSeconds =  Math.floor(Math.random() * 12) * 5;
+	document.getElementById("seconds").value = randomSeconds;
+
+
+	//default num of monsters
+	let randomMonstersAmount =  Math.floor(Math.random() * 4) + 1;
+	document.getElementById("monstersAmount").value = randomMonstersAmount;
 }
 
 function monstersLocations(){
@@ -200,6 +279,25 @@ function prepareBoard(){
 
 }
 
+function setUserUp(upEvent) {
+	up = upEvent.keyCode;
+	document.getElementById("up").value = upEvent.key;
+}
+  
+function setUserDown(downEvent) {
+	down = downEvent.keyCode;
+	document.getElementById("down").value = downEvent.key;
+}  
+
+function setUserLeft(leftEvent) {
+	left = leftEvent.keyCode;
+	document.getElementById("left").value = leftEvent.key;
+} 
+
+function setUserRight(rightEvent) {
+	right = rightEvent.keyCode;
+	document.getElementById("right").value = rightEvent.key;
+} 
 
 function userSettings(){
 	//Food user inputs
@@ -217,11 +315,10 @@ function userSettings(){
 	//Time user inputs
 	let minutes = parseInt(document.getElementById("minutes").value);
 	let seconds = parseInt(document.getElementById("seconds").value);
-
 	timeLimit = minutes * 60 + seconds;
-	// alert(timeLimit);
 
 }
+
 
 function main(){
 	checkTimeLimit();
@@ -294,19 +391,19 @@ function findRandomEmptyCell(board) {
 
 function GetKeyPressed() {
 	//up
-	if (keysDown[38]) {
+	if (keysDown[up]) {
 		return 1;
 	}
 	//down
-	if (keysDown[40]) {
+	if (keysDown[down]) {
 		return 2;
 	}
 	//left
-	if (keysDown[37]) {
+	if (keysDown[left]) {
 		return 3;
 	}
 	//right
-	if (keysDown[39]) {
+	if (keysDown[right]) {
 		return 4;
 	}
 }
@@ -514,6 +611,13 @@ function Draw() {
 				context.drawImage(movingScoreImage, movingScore.i*60, movingScore.j*60, 60, 60);
 			}
 		}
+	}
+	let now = new Date();
+	let timePassed = (now - start_time) / 1000;
+	// alert(timePassed);
+	if (timePassed == timeLimit/10 || timePassed == timeLimit*2/3 || timePassed == timeLimit-5){
+		let clockCell = findRandomEmptyCell(board);
+		context.drawImage(clockImage, clockCell[0]*60, clockCell[1]*60, 60, 60);
 	}
 }
 
