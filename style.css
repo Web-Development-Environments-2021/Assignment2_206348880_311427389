@@ -1,6 +1,4 @@
 .monsters {
-  /* width: 10%;
-  height: 10%; */
   zoom: 3%;
   display: none;
 }
@@ -8,4 +6,36 @@
 #movingScore {
   zoom: 3%;
   display: none;
+}
+
+.foodSlider {
+  -webkit-appearance: none;
+  width: 40%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.foodSlider:hover {
+  opacity: 1;
+}
+
+/* change to image */
+.foodSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+.foodSlider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4caf50;
+  cursor: pointer;
 }
