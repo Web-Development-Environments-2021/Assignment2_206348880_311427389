@@ -20,6 +20,9 @@ var movingScore = new Object();
 var isMovingEaten;
 
 var clockImage;
+var clockCell;
+var isClockEaten;
+var clockIterator;
 
 var keysDown;
 var dirPacman;
@@ -61,13 +64,15 @@ function setUpGame(){
 	// add music
 	// add images
 	movingScoreImage = document.getElementById("movingScore");
-	monsterImage = document.getElementById("monster1");
+	// monsterImage = document.getElementById("monster1");
 	monsters = new Array();
 	moveIterator = 0;
+	clockIterator = 0;
 
 	clockImage = document.getElementById("clock");
 
 	isMovingEaten = false;
+	isClockEaten = false;
 	
 	keysDown = {};
 
@@ -90,10 +95,12 @@ function newGame(){
 // need to add settings inside
 function reset(){
 	isMovingEaten = false;
+	isClockEaten = false;
 	keysDown = {};
 	life = 5;
 	score = 0;
 	moveIterator = 0;
+	clockIterator = 0;
 	if (intervalTimer != undefined){
 		window.clearInterval(intervalTimer);
 	}
@@ -173,29 +180,27 @@ function setRandomSettings(){
 }
 
 function monstersLocations(){
-	board[0][0] = 3;
-	board[0][9] = 3;
-	board[9][0] = 3;
-	board[9][9] = 3;
-
-	for(var i = 0; i < numOfMonsters; i++){
+	for(let i = 0; i < numOfMonsters; i++){
 		if (i == 0){
 			monsters[0].i = 0;
 			monsters[0].j = 0;
+			monsters[0].monsterImage = document.getElementById("monster1");
 		}
 		else if (i == 1){
 			monsters[1].i = 9;
 			monsters[1].j = 0;
-		
+			monsters[1].monsterImage = document.getElementById("monster2");
 		}
 		else if (i == 2){
 			monsters[2].i = 0;
 			monsters[2].j = 9;
+			monsters[2].monsterImage = document.getElementById("monster3");
 		}
 
 		else if (i == 3){
 			monsters[3].i = 9;
 			monsters[3].j = 9;
+			monsters[3].monsterImage = document.getElementById("monster4");
 		}
 	}
 }
@@ -326,6 +331,7 @@ function main(){
 	Draw();
 	detectMonstersCollisions();
 	detectMovingScoreCollisions();
+	detectClockCollisions();
 }
 
 
@@ -379,6 +385,25 @@ function detectMonstersCollisions(){
 	}
 }
 
+function detectClockCollisions(){
+	if (isClockEaten == false){
+		let colsDist = Math.abs(shape.i - clockCell[0]);
+		let rowsDist = Math.abs(shape.j - clockCell[1]);
+
+
+		if (colsDist < 1 && rowsDist < 1){
+			// alert(timeLimit);
+
+			timeLimit += 10;
+			// start_time += 10;
+			// alert(timeLimit);
+			isClockEaten= true;
+			//check
+			//need add sound
+		}
+	}
+}
+
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 10);
 	var j = Math.floor(Math.random() * 10);
@@ -409,7 +434,9 @@ function GetKeyPressed() {
 }
 
 function UpdatePosition() {
+	// if (!((shape.i == 0 || shape.i == 9) && (shape.j == 0 || shape.j == 9))){
 	board[shape.i][shape.j] = 0;
+	// }
 	var x = GetKeyPressed();
 	//up
 	if (x == 1) {
@@ -456,17 +483,16 @@ function UpdatePosition() {
 	if (moveIterator % 5 == 0){
 		updateMonstersPosition();
 		updateMovingScorePosition();
-		// moveIterator = 0;
 	}
 	++moveIterator;
 
 	// if (score >= 20 && time_elapsed <= 10) {
 	// 	pac_color = "green";
 	// }
-	if (score == 400) {
-		window.clearInterval(intervalTimer);
-		window.alert("Game completed");
-	} 
+	// if (score == 400) {
+	// 	window.clearInterval(intervalTimer);
+	// 	window.alert("Game completed");
+	// } 
 }
 
 // need to fix
@@ -562,7 +588,8 @@ function updateMovingScorePosition(){
 function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
-	lblTime.value = time_elapsed;
+	lblTime.value = (timeLimit - time_elapsed).toPrecision(5);
+
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object();
@@ -599,26 +626,39 @@ function Draw() {
 				context.fill();
 			}
 
-			else if (board[i][j] == 3) {
-				for (var k = 0; k < numOfMonsters; k++){
-					// alert(monsters[k].i);
-					context.drawImage(monsterImage, monsters[k].i*60, monsters[k].j*60, 60, 60);
-					// context.drawImage(monsterImage, monsters[k].x*60, monsters[k].y*60, 60, 60);
-				}
+			else if (board[i][j] == 50 && isMovingEaten == false) {
+				context.drawImage(movingScoreImage, movingScore.i*60, movingScore.j*60, 60, 60);		
 			}
 
-			else if (board[i][j] == 50 && isMovingEaten == false) {
-				context.drawImage(movingScoreImage, movingScore.i*60, movingScore.j*60, 60, 60);
+			for (var k = 0; k < numOfMonsters; k++){
+				context.drawImage(monsters[k].monsterImage, monsters[k].i*60, monsters[k].j*60, 60, 60);
+				// context.drawImage(monsterImage, monsters[k].x*60, monsters[k].y*60, 60, 60);
 			}
 		}
 	}
+
+
+	// extra time clock
 	let now = new Date();
 	let timePassed = (now - start_time) / 1000;
-	// alert(timePassed);
-	if (timePassed == timeLimit/10 || timePassed == timeLimit*2/3 || timePassed == timeLimit-5){
-		let clockCell = findRandomEmptyCell(board);
-		context.drawImage(clockImage, clockCell[0]*60, clockCell[1]*60, 60, 60);
+
+	if (clockIterator % 90 < 30 && isClockEaten == false){
+		drawClock();
 	}
+	else{
+		clockCell = undefined;
+		if (clockIterator % 90 > 30){
+			isClockEaten = false;
+		}
+	}
+	++clockIterator;
+}
+
+function drawClock(){
+	if (clockCell == undefined){
+		clockCell = findRandomEmptyCell(board);
+	}
+	context.drawImage(clockImage, clockCell[0]*60, clockCell[1]*60, 60, 60);
 }
 
 function drawDirectedPacman(startAngle, endAngle, xCenter, yCenter, xDist, yDist){
