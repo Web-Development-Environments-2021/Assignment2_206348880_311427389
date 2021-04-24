@@ -2,22 +2,24 @@
 <html>
   <head>
     <script src="./jquery-3.4.1.slim.min.js"></script>
-    <!-- <script type="text/javascript" src="./app.js"></script>
-    <script type="text/javascript" src="./settings.js"></script> -->
     <link rel="stylesheet" href="style.css" />
-
     <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
-    <!-- <link rel="stylesheet" href="/resources/demos/style.css" /> -->
+    <link rel="stylesheet" href="/resources/demos/style.css" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="./welcome.js"></script>
     <script type="text/javascript" src="./settings.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
     <script>
       $(function () {
-        $("#accordion").accordion();
+        $("#accordion").accordion({
+          heightStyle: "content",
+          collapsible: true,
+        });
       });
     </script>
   </head>
@@ -28,20 +30,64 @@
 
     <div id="content">
       <div id="welcomePage">
-        <button id="signUp" class="welcomeButton">Sign Up</button>
-        <button id="Login" class="welcomeButton">Login</button>
+        <button id="signUp" class="welcomeButton" onclick="toggleSignUp()">
+          Sign Up
+        </button>
+        <button id="Login" class="welcomeButton" onclick="showLogin()">
+          Login
+        </button>
       </div>
 
       <div id="signUpPage">
-        <form action="">
-          <label for="userName">User Name:</label>
-          <input type="text" />
+        <form
+          method="POST"
+          autocomplete="off"
+          onsubmit="return submitSignUp()"
+          id="signUpForm"
+          name="signUpForm"
+        >
+          <label>User Name:</label>
+          <input type="text" id="userName" name="userName" />
+          <br />
+          <label>Password:</label>
+          <input type="password" id="password" name="password" />
+          <br />
+          <label>Full Name:</label>
+          <input type="text" id="fullName" name="fullName" />
+          <br />
+          <label>E-Mail:</label>
+          <input type="text" id="email" name="email" />
+          <br />
+          <label>Birthday:</label>
+          <input type="text" id="datepicker" name="birthday" />
+          <script>
+            $(function () {
+              $("#datepicker").datepicker();
+            });
+          </script>
+          <input type="submit" name="" id="submit" value="submit" />
         </form>
       </div>
 
-      <div id="loginPage"></div>
+      <div id="loginPage">
+        <form
+          method="POST"
+          autocomplete="off"
+          onsubmit="return submitLogin()"
+          id="loginForm"
+          name="loginForm"
+        >
+          <label>User Name:</label>
+          <input type="text" id="loginUserName" />
 
-      <div id="settings">
+          <label>Password:</label>
+          <input type="password" id="loginPassword" />
+
+          <input type="submit" name="" id="submit" value="Login" />
+        </form>
+      </div>
+
+      <div id="settingsPage">
         <h2>Game Settings</h2>
 
         <div id="accordion">
@@ -184,9 +230,11 @@
         <button class="settingButton" id="random" onclick="setRandomSettings()">
           Random
         </button>
+        <br />
+        <button id="newGame" onclick="startNewGame()">New Game</button>
       </div>
 
-      <div id="game">
+      <div id="gamePage">
         <div id="score">
           <label for="lblScore">SCORE:</label>
           <input id="lblScore" type="text" />
@@ -196,7 +244,9 @@
           <input id="lblTime" type="text" />
         </div>
 
-        <button id="newGame">start new Game!</button>
+        <button id="newRound" onclick="toggleNewGameSettings()">
+          Another Round
+        </button>
 
         <canvas id="canvas" height="600" width="600"></canvas>
         <img
@@ -230,6 +280,8 @@
         />
         <img id="clock" src="media/clock.jpeg" alt="clock image" />
       </div>
+
+      <div id="aboutPage">about US!!!</div>
     </div>
   </body>
 </html>

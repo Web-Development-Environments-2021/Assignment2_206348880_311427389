@@ -1,3 +1,31 @@
+#welcomePage {
+}
+
+#signUpPage {
+  display: none;
+}
+
+#loginPage {
+  display: none;
+}
+
+#settingsPage {
+  display: none;
+}
+
+#gamePage {
+  display: none;
+}
+
+#aboutPage {
+  display: none;
+}
+
+#settingsPage {
+  height: 150%;
+  width: 50%;
+}
+
 .monsters {
   zoom: 3%;
   display: none;
@@ -43,4 +71,12 @@
   height: 25px;
   background: #4caf50;
   cursor: pointer;
+}
+
+.valid {
+  color: #4caf50;
+}
+
+.error {
+  color: red;
 }
