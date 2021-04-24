@@ -45,11 +45,11 @@ var right;
 
 
 //toggle test - need to fix
-$(document).ready(function(){
-	$("#newGame").click(function(){
-	  $("#settings").toggle();
-	});
-  });
+// $(document).ready(function(){
+// 	$("#newGame").click(function(){
+// 	  $("#settings").toggle();
+// 	});
+//   });
 
 
 window.addEventListener("load", setUpGame, false);
@@ -58,7 +58,7 @@ function setUpGame(){
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
 
-	document.getElementById("newGame").addEventListener("click", newGame, false)
+	// document.getElementById("newGame").addEventListener("click", newGame, false)
 
 	// add backgorund
 	// add music
@@ -214,6 +214,15 @@ function prepareBoard(){
 
 }
 
+function toggleNewGameSettings(){
+	$("#settingsPage").toggle();
+	$("#gamePage").toggle();
+}
+
+function startNewGame(){
+	toggleNewGameSettings();
+	newGame();
+}
 
 function main(){
 	checkTimeLimit();
@@ -230,6 +239,12 @@ function checkTimeLimit(){
 	time_elapsed = (currentTime - start_time) / 1000;
 	if (time_elapsed >= timeLimit){
 		window.clearInterval(intervalTimer);
+		if (score < 100){
+			alert("You are better than " + score + " points!")
+		}
+		else{
+			alert("Winner!!!")
+		}
 	}
 }
 
@@ -268,8 +283,8 @@ function detectMonstersCollisions(){
 			//need to add pop window with summary og score
 			else{
 				window.clearInterval(intervalTimer);
-				alert("your score is: " + score);
-				newGame();
+				alert("Loser!")
+				// newGame();
 			}
 		}
 	}
