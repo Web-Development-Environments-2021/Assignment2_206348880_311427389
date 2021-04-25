@@ -162,6 +162,13 @@ function movingScoreLocation(){
 
 function prepareBoard(){
 	board = new Array();
+
+	for (let i = 0; i < 10; i++) {
+		board[i] = new Array();
+		for (let j = 0; j < 10; j++) {
+			board[i][j] = 0;
+		}
+	}
 	pac_color = "yellow";
 
 	userSettings();
@@ -174,12 +181,6 @@ function prepareBoard(){
 	let diff = ballsCount - (counter5+counter15+counter25);
 	if (diff > 0){
 		counter5 += diff;
-	}
-
-
-
-	for (let i = 0; i < 10; i++) {
-		board[i] = new Array();
 	}
 
 	// monsters
@@ -278,7 +279,7 @@ function detectCollisions(){
 	detectMovingScoreCollisions();
 	detectClockCollisions();
 	detectPillCollisions();
-	console.log("count: " + ballsCount);
+	// console.log("count: " + ballsCount);
 	if (ballsCount == 0){
 		endGame("food");
 	}
@@ -356,7 +357,7 @@ function detectPillCollisions(){
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 10);
 	var j = Math.floor(Math.random() * 10);
-	while (board[i][j] != undefined) {
+	while (board[i][j] != 0) {
 		i = Math.floor(Math.random() * 10);
 		j = Math.floor(Math.random() * 10);
 	}
@@ -449,11 +450,11 @@ function updateMonstersPosition(){
 		// monster need to move up-down
 		if (Math.abs(rowsDist) > Math.abs(colsDist)){
 			// // monster need to move down
-			if (rowsDist > 0 && board[monsters[i].i][monsters[i].j+1] != 1){
+			if (monsters[i].j+1 < 10 && rowsDist > 0 && board[monsters[i].i][monsters[i].j+1] != 1){
 				moveMonsterDown(monsters[i]);
 			}
 			// monster need to move up
-			else if(rowsDist <= 0 && board[monsters[i].i][monsters[i].j-1] != 1){
+			else if(monsters[i].j-1 >= 0 && rowsDist <= 0 && board[monsters[i].i][monsters[i].j-1] != 1){
 				moveMonsterUp(monsters[i]);
 			}
 			// else if(rowsDist == 0){
@@ -467,12 +468,12 @@ function updateMonstersPosition(){
 		}
 		// monster need to move left-right
 		else{
-			// // monster need to move right
-			if (colsDist > 0 && board[monsters[i].i+1][monsters[i].j] != 1){
+			//monster need to move right
+			if (monsters[i].i+1 < 10 && colsDist > 0 && board[monsters[i].i+1][monsters[i].j] != 1){
 				moveMonsterRight(monsters[i]);
 			}
 			// monster need to move left
-			else if(colsDist <= 0 && board[monsters[i].i-1][monsters[i].j] != 1) {
+			else if(monsters[i].i-1 >= 0 && colsDist <= 0 && board[monsters[i].i-1][monsters[i].j] != 1) {
 				moveMonsterLeft(monsters[i]);
 			}
 			// else if (colsDist == 0){
@@ -588,7 +589,7 @@ function Draw() {
 	}
 
 
-	console.log("matzoir: " + toDelete);
+	// console.log("matzoir: " + toDelete);
 
 
 	// // extra time clock

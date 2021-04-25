@@ -1,4 +1,7 @@
 #welcomePage {
+  background-image: url("media/1.png");
+  width: 1500px;
+  height: 550px;
 }
 
 #signUpPage {
