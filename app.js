@@ -49,6 +49,7 @@ var right;
 
 //variables for sound
 var loserSound;
+var backgroundSound;
 
 
 window.addEventListener("load", setUpGame, false);
@@ -58,21 +59,17 @@ function setUpGame(){
 	context = canvas.getContext("2d");
 
 	// add backgorund
+
 	// add music
 	loserSound = document.getElementById("loserSound");
+	backgroundSound = document.getElementById("backgroundSound");
+
+
 	// add images
 	movingScoreImage = document.getElementById("movingScore");
-	// moveIterator = 0;
-	// clockIterator = 0;
-	// pillIterator = 0;
-
 	clockImage = document.getElementById("clock");
-
 	pillImage = document.getElementById("cure");
 
-	// isMovingEaten = false;
-	// isClockEaten = false;
-	// isPillEaten = false;
 	
 	keysDown = {};
 
@@ -88,6 +85,7 @@ function newGame(){
 	// decide where to put settings
 	reset();
 	prepareBoard();
+	backgroundSound.play()
 	start_time = new Date();
 	intervalTimer = setInterval(main, 150);
 }
@@ -151,7 +149,6 @@ function randomLocatePacman(){
 }
 
 function movingScoreLocation(){
-	// board[5][4] = 50;
 	movingScore.i = 5;
 	movingScore.j = 4;
 }
@@ -232,6 +229,8 @@ function toggleNewGameSettings(){
 
 function endGame(reason){
 	Draw();
+	backgroundSound.pause();
+	backgroundSound.currentTime = 0;
 	window.clearInterval(intervalTimer);
 	if (reason == "life"){
 		loserSound.play();
