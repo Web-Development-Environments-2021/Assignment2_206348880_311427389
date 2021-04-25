@@ -10,6 +10,10 @@ var intervalTimer;
 
 
 var life;
+var pillImage;
+var pillCell;
+var pillIterator;
+
 var monsters;
 var numOfMonsters;
 var monsterImage;
@@ -58,21 +62,21 @@ function setUpGame(){
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
 
-	// document.getElementById("newGame").addEventListener("click", newGame, false)
-
 	// add backgorund
 	// add music
 	// add images
 	movingScoreImage = document.getElementById("movingScore");
-	// monsterImage = document.getElementById("monster1");
-	monsters = new Array();
-	moveIterator = 0;
-	clockIterator = 0;
+	// moveIterator = 0;
+	// clockIterator = 0;
+	// pillIterator = 0;
 
 	clockImage = document.getElementById("clock");
 
-	isMovingEaten = false;
-	isClockEaten = false;
+	pillImage = document.getElementById("cure");
+
+	// isMovingEaten = false;
+	// isClockEaten = false;
+	// isPillEaten = false;
 	
 	keysDown = {};
 
@@ -96,11 +100,15 @@ function newGame(){
 function reset(){
 	isMovingEaten = false;
 	isClockEaten = false;
+	isPillEaten = false;
 	keysDown = {};
 	life = 5;
 	score = 0;
+	shape.i = undefined;
+	shape.j = undefined;
 	moveIterator = 0;
 	clockIterator = 0;
+	pillIterator = 0;
 	if (intervalTimer != undefined){
 		window.clearInterval(intervalTimer);
 	}
@@ -147,7 +155,7 @@ function randomLocatePacman(){
 }
 
 function movingScoreLocation(){
-	board[5][4] = 50;
+	// board[5][4] = 50;
 	movingScore.i = 5;
 	movingScore.j = 4;
 }
@@ -158,7 +166,6 @@ function prepareBoard(){
 
 	userSettings();
 
-	// ballsCount = document.getElementById("foodAmount").value; // user
 	counter5 = Math.floor(ballsCount * 0.6);
 	counter15 = Math.floor(ballsCount * 0.3);
 	counter25 = Math.floor(ballsCount * 0.1);
@@ -170,7 +177,8 @@ function prepareBoard(){
 	}
 
 
-	for (var i = 0; i < 10; i++) {
+
+	for (let i = 0; i < 10; i++) {
 		board[i] = new Array();
 	}
 
@@ -181,7 +189,7 @@ function prepareBoard(){
 	movingScoreLocation()
 
 	// walls
-	var i = 5;
+	let i = 5;
 	while (i > 0){
 		let emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 1;
@@ -209,14 +217,39 @@ function prepareBoard(){
 		counter5--;
 	}
 
+
 	// pacman's random location
 	randomLocatePacman();
 
 }
 
+function anotherRound(){
+	window.clearInterval(intervalTimer);
+	toggleNewGameSettings();
+}
+
 function toggleNewGameSettings(){
 	$("#settingsPage").toggle();
 	$("#gamePage").toggle();
+}
+
+function endGame(reason){
+	Draw();
+	window.clearInterval(intervalTimer);
+	if (reason == "life"){
+		alert("Loser!")
+	}
+	else if (reason == "time" && score < 100){
+		alert("You are better than " + score + " points!")
+	}
+	else if (reason == "time" && score >= 100){
+		alert("Winner!!!")
+	}
+	else if(reason == "food"){
+		console.log("You are the best!!!")
+		// alert("You are the best!!!")
+	}
+	// toggleNewGameSettings();
 }
 
 function startNewGame(){
@@ -228,9 +261,7 @@ function main(){
 	checkTimeLimit();
 	UpdatePosition();
 	Draw();
-	detectMonstersCollisions();
-	detectMovingScoreCollisions();
-	detectClockCollisions();
+	detectCollisions();
 }
 
 
@@ -238,13 +269,18 @@ function checkTimeLimit(){
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
 	if (time_elapsed >= timeLimit){
-		window.clearInterval(intervalTimer);
-		if (score < 100){
-			alert("You are better than " + score + " points!")
-		}
-		else{
-			alert("Winner!!!")
-		}
+		endGame("time");
+	}
+}
+
+function detectCollisions(){
+	detectMonstersCollisions();
+	detectMovingScoreCollisions();
+	detectClockCollisions();
+	detectPillCollisions();
+	console.log("count: " + ballsCount);
+	if (ballsCount == 0){
+		endGame("food");
 	}
 }
 
@@ -282,9 +318,8 @@ function detectMonstersCollisions(){
 			}
 			//need to add pop window with summary og score
 			else{
-				window.clearInterval(intervalTimer);
-				alert("Loser!")
-				// newGame();
+				// lblLife.value = 0;
+				endGame("life");
 			}
 		}
 	}
@@ -297,13 +332,22 @@ function detectClockCollisions(){
 
 
 		if (colsDist < 1 && rowsDist < 1){
-			// alert(timeLimit);
-
 			timeLimit += 10;
-			// start_time += 10;
-			// alert(timeLimit);
 			isClockEaten= true;
 			//check
+			//need add sound
+		}
+	}
+}
+
+function detectPillCollisions(){
+	if(isPillEaten == false && pillCell != undefined){
+		let colsDist = Math.abs(shape.i - pillCell[0]);
+		let rowsDist = Math.abs(shape.j - pillCell[1]);
+
+		if (colsDist < 1 && rowsDist < 1){
+			life++;
+			isPillEaten = true;
 			//need add sound
 		}
 	}
@@ -373,13 +417,16 @@ function UpdatePosition() {
 	}
 	if (board[shape.i][shape.j] == 5) {
 		score += 5;
+		ballsCount--;
 	}
 	else if(board[shape.i][shape.j] == 15){
 		score += 15;
+		ballsCount--;
 	}
 
 	else if(board[shape.i][shape.j] == 25){
 		score += 25;
+		ballsCount--;
 	}
 
 	board[shape.i][shape.j] = 2;
@@ -390,14 +437,6 @@ function UpdatePosition() {
 		updateMovingScorePosition();
 	}
 	++moveIterator;
-
-	// if (score >= 20 && time_elapsed <= 10) {
-	// 	pac_color = "green";
-	// }
-	// if (score == 400) {
-	// 	window.clearInterval(intervalTimer);
-	// 	window.alert("Game completed");
-	// } 
 }
 
 // need to fix
@@ -494,7 +533,11 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = (timeLimit - time_elapsed).toPrecision(5);
-
+	if (lblTime.value < 0){
+		lblTime.value = 0.000;
+	}
+	lblLife.value = life;
+	var toDelete = 0;
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object();
@@ -517,12 +560,15 @@ function Draw() {
 				
 			} else if (board[i][j] == 5) {
 				drawCircles(center.x, center.y, 0, 0, color5, 5);
+				toDelete++;
 
 			} else if (board[i][j] == 15) {
 				drawCircles(center.x, center.y, 0, 0, color15, 10);
+				toDelete++;
 
 			} else if (board[i][j] == 25) {
 				drawCircles(center.x, center.y, 0, 0, color25, 15);
+				toDelete++;
 
 			} else if (board[i][j] == 1) {
 				context.beginPath();
@@ -531,32 +577,39 @@ function Draw() {
 				context.fill();
 			}
 
-			else if (board[i][j] == 50 && isMovingEaten == false) {
+			if (isMovingEaten == false) {
 				context.drawImage(movingScoreImage, movingScore.i*60, movingScore.j*60, 60, 60);		
 			}
 
 			for (var k = 0; k < numOfMonsters; k++){
 				context.drawImage(monsters[k].monsterImage, monsters[k].i*60, monsters[k].j*60, 60, 60);
-				// context.drawImage(monsterImage, monsters[k].x*60, monsters[k].y*60, 60, 60);
 			}
 		}
 	}
 
 
-	// extra time clock
-	let now = new Date();
-	let timePassed = (now - start_time) / 1000;
+	console.log("matzoir: " + toDelete);
 
-	if (clockIterator % 90 < 30 && isClockEaten == false){
+
+	// // extra time clock
+	// let now = new Date();
+	// let timePassed = (now - start_time) / 1000;
+
+	if (clockIterator % 9 > 6 && isClockEaten == false){
 		drawClock();
 	}
 	else{
 		clockCell = undefined;
-		if (clockIterator % 90 > 30){
+		if (clockIterator % 9 < 6){
 			isClockEaten = false;
 		}
 	}
-	++clockIterator;
+	clockIterator += 0.1;
+
+	if (pillIterator % 15 > 10 && isPillEaten == false){
+		drawPill();
+	}
+	pillIterator += 0.1;
 }
 
 function drawClock(){
@@ -564,6 +617,13 @@ function drawClock(){
 		clockCell = findRandomEmptyCell(board);
 	}
 	context.drawImage(clockImage, clockCell[0]*60, clockCell[1]*60, 60, 60);
+}
+
+function drawPill(){
+	if (pillCell == undefined){
+		pillCell = findRandomEmptyCell(board);
+	}
+	context.drawImage(pillImage, pillCell[0]*60, pillCell[1]*60, 60, 60);
 }
 
 function drawDirectedPacman(startAngle, endAngle, xCenter, yCenter, xDist, yDist){

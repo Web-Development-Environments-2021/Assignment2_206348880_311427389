@@ -12,23 +12,31 @@ function updateFoodAmount(){
 
 
 function setUserUp(upEvent) {
-	up = upEvent.keyCode;
-	document.getElementById("up").value = upEvent.key;
+	if(checkValidKey(upEvent.keyCode)){
+		up = upEvent.keyCode;
+		document.getElementById("up").value = upEvent.key;
+	}
 }
   
 function setUserDown(downEvent) {
-	down = downEvent.keyCode;
-	document.getElementById("down").value = downEvent.key;
+	if(checkValidKey(upEvent.keyCode)){
+		down = downEvent.keyCode;
+		document.getElementById("down").value = downEvent.key;
+	}
 }  
 
 function setUserLeft(leftEvent) {
-	left = leftEvent.keyCode;
-	document.getElementById("left").value = leftEvent.key;
+	if(checkValidKey(upEvent.keyCode)){
+		left = leftEvent.keyCode;
+		document.getElementById("left").value = leftEvent.key;
+	}
 } 
-
 function setUserRight(rightEvent) {
-	right = rightEvent.keyCode;
-	document.getElementById("right").value = rightEvent.key;
+	if(checkValidKey(upEvent.keyCode)){
+		right = rightEvent.keyCode;
+		document.getElementById("right").value = rightEvent.key;
+	}
+
 } 
 
 function userSettings(){
@@ -40,6 +48,7 @@ function userSettings(){
 
 	//Monsters user inputs
 	numOfMonsters = document.getElementById("monstersAmount").value;
+	monsters = new Array();
 	for (var i = 0; i < numOfMonsters; i++){
 		monsters[i] = new Object();
 	}
@@ -119,4 +128,12 @@ function setRandomSettings(){
 	//default num of monsters
 	let randomMonstersAmount =  Math.floor(Math.random() * 4) + 1;
 	document.getElementById("monstersAmount").value = randomMonstersAmount;
+}
+
+
+function checkValidKey(key){
+	if (key == up || key == down || key == right || key == left){
+		return false;
+	}
+	return true;
 }
