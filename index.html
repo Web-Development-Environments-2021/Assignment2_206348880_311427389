@@ -7,10 +7,10 @@
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
-    <link rel="stylesheet" href="/resources/demos/style.css" />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <!--link rel="stylesheet" href="/resources/demos/style.css" /-->
     <script type="text/javascript" src="./welcome.js"></script>
     <script type="text/javascript" src="./settings.js"></script>
     <script type="text/javascript" src="./app.js"></script>
@@ -83,7 +83,7 @@
           <label>Password:</label>
           <input type="password" id="loginPassword" />
 
-          <input type="submit" name="" id="submit" value="Login" />
+          <input type="submit" name="" id="loginbtn" value="Login" />
         </form>
       </div>
 
@@ -109,19 +109,6 @@
               oninput="updateFoodAmount()"
             />
             <p>Value: <span id="foodValue"></span></p>
-
-            <!-- move to settings.js -->
-            <!-- <script>
-              // food settings
-              var slider = document.getElementById("foodAmount");
-              var output = document.getElementById("foodValue");
-              output.innerHTML = slider.value; // Display the default slider value
-
-              // Update the current slider value (each time you drag the slider handle)
-              slider.oninput = function () {
-                output.innerHTML = this.value;
-              };
-            </script> -->
 
             <p>Different Food Colors:</p>
             <div>
@@ -243,8 +230,11 @@
           <label for="lblTime">TIME:</label>
           <input id="lblTime" type="text" />
         </div>
+        <div id="life">
+          <label for="lblLife">Life:</label>
+          <input id="lblLife" type="text"/>
 
-        <button id="newRound" onclick="toggleNewGameSettings()">
+        <button id="newRound" onclick="anotherRound()">
           Another Round
         </button>
 
@@ -279,6 +269,7 @@
           alt="random moving score image"
         />
         <img id="clock" src="media/clock.jpeg" alt="clock image" />
+        <img id="cure" src="media/cure.png" alt="cure image"/>
       </div>
 
       <div id="aboutPage">about US!!!</div>
