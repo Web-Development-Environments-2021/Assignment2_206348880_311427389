@@ -227,6 +227,23 @@ function toggleNewGameSettings(){
 	$("#gamePage").toggle();
 }
 
+
+function closeModal(){
+	let modal = document.querySelector("#endGameModal");
+	modal.close('Ok! 🤠');
+	$("#modalContent").text('');
+
+}
+
+function gameOverDialog(content){
+	let modal = document.querySelector("#endGameModal");
+	$("#modalContent").text(content);
+	// let paragraph = document.querySelector("#modalContent");
+	// let text = document.createTextNode(content);
+	// paragraph.appendChild(text);
+	modal.showModal();
+}
+
 function endGame(reason){
 	Draw();
 	backgroundSound.pause();
@@ -234,16 +251,21 @@ function endGame(reason){
 	window.clearInterval(intervalTimer);
 	if (reason == "life"){
 		loserSound.play();
-		alert("Loser!")
+		gameOverDialog("Loser! Just a few rounds and you will be better...");
+		// alert("Loser!")
 	}
 	else if (reason == "time" && score < 100){
-		alert("You are better than " + score + " points!")
+		let message = "You are better than " + score + " points!";
+		gameOverDialog(message);
+		// alert("You are better than " + score + " points!")
 	}
 	else if (reason == "time" && score >= 100){
-		alert("Winner!!!")
+		gameOverDialog("Winner!!!");
+		// alert("Winner!!!")
 	}
 	else if(reason == "food"){
-		console.log("You are the best!!!")
+		gameOverDialog("You are the best!!!");
+		// console.log("You are the best!!!")
 		// alert("You are the best!!!")
 	}
 	// toggleNewGameSettings();
