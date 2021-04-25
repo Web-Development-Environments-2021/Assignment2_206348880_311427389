@@ -47,13 +47,8 @@ var down;
 var left;
 var right;
 
-
-//toggle test - need to fix
-// $(document).ready(function(){
-// 	$("#newGame").click(function(){
-// 	  $("#settings").toggle();
-// 	});
-//   });
+//variables for sound
+var loserSound;
 
 
 window.addEventListener("load", setUpGame, false);
@@ -64,6 +59,7 @@ function setUpGame(){
 
 	// add backgorund
 	// add music
+	loserSound = document.getElementById("loserSound");
 	// add images
 	movingScoreImage = document.getElementById("movingScore");
 	// moveIterator = 0;
@@ -238,6 +234,7 @@ function endGame(reason){
 	Draw();
 	window.clearInterval(intervalTimer);
 	if (reason == "life"){
+		loserSound.play();
 		alert("Loser!")
 	}
 	else if (reason == "time" && score < 100){
