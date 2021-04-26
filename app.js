@@ -121,7 +121,7 @@ function monstersLocations(){
 		}
 		else if (i == 1){
 			monsters[1].i = 9;
-			monsters[1].j = 0;
+			monsters[1].j = 9;
 			monsters[1].monsterImage = document.getElementById("monster2");
 		}
 		else if (i == 2){
@@ -132,7 +132,7 @@ function monstersLocations(){
 
 		else if (i == 3){
 			monsters[3].i = 9;
-			monsters[3].j = 9;
+			monsters[3].j = 0;
 			monsters[3].monsterImage = document.getElementById("monster4");
 		}
 	}
@@ -183,13 +183,14 @@ function prepareBoard(){
 	// moving score sponge?
 	movingScoreLocation()
 
+	initWalls();
 	// walls
-	let i = 5;
-	while (i > 0){
-		let emptyCell = findRandomEmptyCell(board);
-		board[emptyCell[0]][emptyCell[1]] = 1;
-		i--;
-	}
+	// let i = 5;
+	// while (i > 0){
+	// 	let emptyCell = findRandomEmptyCell(board);
+	// 	board[emptyCell[0]][emptyCell[1]] = 1;
+	// 	i--;
+	// }
 
 	//25 point food
 	while (counter25 > 0){
@@ -216,6 +217,17 @@ function prepareBoard(){
 	// pacman's random location
 	randomLocatePacman();
 
+}
+
+function initWalls(){
+	board[2][3] = 1;
+	board[2][4] = 1;
+	board[3][7] = 1;
+	board[4][7] = 1;
+	board[5][7] = 1;
+	board[6][3] = 1;
+	board[7][3] = 1;
+	board[7][4] = 1;
 }
 
 function anotherRound(){
@@ -466,49 +478,63 @@ function UpdatePosition() {
 // need to fix
 function updateMonstersPosition(){
 	for (var i = 0; i < numOfMonsters; i++){
-
-		let colsDist = shape.i -  monsters[i].i;
-		let rowsDist = shape.j - monsters[i].j;
-
-		// monster need to move up-down
-		if (Math.abs(rowsDist) > Math.abs(colsDist)){
-			// // monster need to move down
-			if (monsters[i].j+1 < 10 && rowsDist > 0 && board[monsters[i].i][monsters[i].j+1] != 1){
-				moveMonsterDown(monsters[i]);
+		let prob = Math.random() * 4;
+		if (prob<3){
+			let colsDist = shape.i -  monsters[i].i;
+			let rowsDist = shape.j - monsters[i].j;
+	
+			// monster need to move up-down
+			if (Math.abs(rowsDist) > Math.abs(colsDist)){
+				// // monster need to move down
+				if (monsters[i].j+1 < 10 && rowsDist > 0 && board[monsters[i].i][monsters[i].j+1] != 1){
+					moveMonsterDown(monsters[i]);
+				}
+				// monster need to move up
+				else if(monsters[i].j-1 >= 0 && rowsDist <= 0 && board[monsters[i].i][monsters[i].j-1] != 1){
+					moveMonsterUp(monsters[i]);
+				}
 			}
-			// monster need to move up
-			else if(monsters[i].j-1 >= 0 && rowsDist <= 0 && board[monsters[i].i][monsters[i].j-1] != 1){
-				moveMonsterUp(monsters[i]);
+			// monster need to move left-right
+			else{
+				//monster need to move right
+				if (monsters[i].i+1 < 10 && colsDist > 0 && board[monsters[i].i+1][monsters[i].j] != 1){
+					moveMonsterRight(monsters[i]);
+				}
+				// monster need to move left
+				else if(monsters[i].i-1 >= 0 && colsDist <= 0 && board[monsters[i].i-1][monsters[i].j] != 1) {
+					moveMonsterLeft(monsters[i]);
+				}
 			}
-			// else if(rowsDist == 0){
-			// 	if (colsDist > 0 && board[xIndex+1][yIndex] != 1){
-			// 		moveMonsterRight(monsters[i]);
-			// 	}
-			// 	else if(board[xIndex][yIndex] != 1) {
-			// 		moveMonsterLeft(monsters[i]);
-			// 	}
-			// }
 		}
-		// monster need to move left-right
 		else{
-			//monster need to move right
-			if (monsters[i].i+1 < 10 && colsDist > 0 && board[monsters[i].i+1][monsters[i].j] != 1){
-				moveMonsterRight(monsters[i]);
-			}
-			// monster need to move left
-			else if(monsters[i].i-1 >= 0 && colsDist <= 0 && board[monsters[i].i-1][monsters[i].j] != 1) {
-				moveMonsterLeft(monsters[i]);
-			}
-			// else if (colsDist == 0){
-			// 	if (rowsDist > 0 && board[xIndex][yIndex+1] != 1){
-			// 		moveMonsterDown(monsters[i]);
-			// 	}
-			// 	else if(board[xIndex][yIndex-1] != 1) {
-			// 		moveMonsterUp(monsters[i]);
-			// 	}
-			// }
+			monsterMoveRandomly(monsters[i]);
 		}
 	}
+
+}
+
+function monsterMoveRandomly(monster){
+	let move = false;
+	while(!move){
+		let dir = Math.floor(Math.random() * 4);
+		if(dir == 0 && board[monster.i][monster.j+1] != 1){
+			moveMonsterDown(monster);
+			move = true;
+		}
+		else if(dir == 1 && board[monster.i][monster.j-1] != 1){
+			moveMonsterUp(monster);
+			move = true;
+		}
+		else if (dir == 2 && board[monster.i+1][monster.j] != 1){
+			moveMonsterRight(monster);
+			move = true;
+		}
+		else if (dir == 3 && board[monster.i-1][monster.j] != 1){
+			moveMonsterLeft(monster);
+			move = true;
+		}
+	}
+
 }
 
 function moveMonsterLeft(monster){
@@ -619,18 +645,18 @@ function Draw() {
 	// let now = new Date();
 	// let timePassed = (now - start_time) / 1000;
 
-	if (clockIterator % 9 > 6 && isClockEaten == false){
+	if (clockIterator % 13 > 11 && isClockEaten == false){
 		drawClock();
 	}
 	else{
 		clockCell = undefined;
-		if (clockIterator % 9 < 6){
+		if (clockIterator % 13 < 11){
 			isClockEaten = false;
 		}
 	}
 	clockIterator += 0.1;
 
-	if (pillIterator % 15 > 10 && isPillEaten == false){
+	if (pillIterator % 15 > 12 && isPillEaten == false){
 		drawPill();
 	}
 	pillIterator += 0.1;
