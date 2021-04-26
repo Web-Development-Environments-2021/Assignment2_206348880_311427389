@@ -241,12 +241,6 @@ function toggleNewGameSettings(){
 }
 
 
-// window.onclick = function(event) {
-// 	if (event.target == endGameModal) {
-// 		endGameModal.style.display = "none";
-// 	}
-// }
-
 function dinamicModalDialog(title ,content){	
 	// inject message according game over specific reason
 	$("#modalContent").text(content);

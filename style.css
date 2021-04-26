@@ -2,20 +2,6 @@ body {
   font-family: "Exo";
 }
 
-#welcomePage {
-  background-image: url("media/1.png");
-  width: 1500px;
-  height: 550px;
-}
-
-#signUpPage {
-  display: none;
-}
-
-#loginPage {
-  display: none;
-}
-
 #settingsPage {
   display: none;
 }
@@ -83,14 +69,6 @@ body {
   height: 25px;
   background: #4caf50;
   cursor: pointer;
-}
-
-.valid {
-  color: #4caf50;
-}
-
-.error {
-  color: red;
 }
 
 /* //dialog */
