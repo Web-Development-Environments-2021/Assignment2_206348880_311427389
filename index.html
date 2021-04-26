@@ -3,10 +3,10 @@
   <head>
     <title>TG Pacman</title>
     <link rel="icon" href="media/pageIcon.png" type="image/gif" sizes="16x16" />
-
     <script src="./jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="signUp.css">
+    <link rel="stylesheet" href="welcomePage.css">
     <!--Google's fonts-->
     <link
       rel="stylesheet"
@@ -45,17 +45,22 @@
   </head>
 
   <body>
-    <header></header>
+    <header>
+      logoooooooooooooooo
+    </header>
     <menu type="context"></menu>
 
     <div id="content">
       <div id="welcomePage">
-        <button id="signUp" class="welcomeButton" onclick="toggleSignUp()">
-          Sign Up
-        </button>
-        <button id="Login" class="welcomeButton" onclick="showLogin()">
-          Login
-        </button>
+        <div id="welcomeContainer">
+          <button id="signUp" class="welcomeButton" onclick="toggleSignUp()">
+            Sign Up
+          </button>
+          <button id="Login" class="welcomeButton" onclick="showLogin()">
+            Login
+          </button>
+        </div>
+
 
         <!-- move to menu -->
         <button id="about" onclick="aboutModalDialog('ABOUT' ,'content')">About</button>
@@ -73,22 +78,18 @@
           <i class="fas fa-user-circle"></i>
           <label>User Name:</label>
           <input type="text" id="userName" name="userName" />
-          <br />
 
           <i class="fas fa-ghost"></i>
           <label>Password:</label>
           <input type="password" id="password" name="password" />
-          <br />
 
           <i class="fas fa-user-alt"></i>
           <label>Full Name:</label>
           <input type="text" id="fullName" name="fullName" />
-          <br />
 
           <i class="fa fa-envelope icon"></i>
           <label>E-Mail:</label>
           <input type="text" id="email" name="email" />
-          <br />
 
           <i class="fas fa-robot"></i>
           <i class="fas fa-birthday-cake"></i>
@@ -339,9 +340,6 @@
     </div>
 
     <footer>
-     Im the footer! Please dont forgot to design me
-     <br>
-     You can share the game via:
       <ul>
         <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://web-development-environments-2021.github.io/311427389/" data-href="https://web-development-environments-2021.github.io/311427389/"><i class="fab fa-facebook"></i></a></li>
         <li><a href=""><i class="fab fa-twitter"></i></a></li>

@@ -1,13 +1,14 @@
 #signUpPage {
-  background-image: url("media/COlJKlZWgAky71P.png");
+  /* background-image: url("media/HD-Pacman-Wallpaper.jpg"); */
+  display: none;
 }
 
 form {
-  width: 50%;
+  width: 40%;
   padding: 20px;
   text-align: left;
   margin: auto;
-  background-image: url("media/sectionBG.jpg");
+  /* background-image: url("media/sectionBG.jpg"); */
   border: double 10px rgb(255, 154, 171);
   border-radius: 30px;
 }
@@ -30,7 +31,7 @@ textarea {
 }
 
 #submit {
-  background-image: url("media/menuBG.jpg");
+  /* background-image: url("media/menuBG.jpg"); */
   border-radius: 15px;
   padding: 13px 30px;
   border: 5px solid white;
@@ -39,7 +40,7 @@ textarea {
   display: flex;
   font-family: "Exo";
   font-size: 18px;
-  margin-top: 25px;
+  /* margin-top: 25px; */
   transition: transform 0.2s;
 }
 
@@ -59,4 +60,15 @@ textarea {
 .error {
   color: red;
   font-weight: bold;
+}
+
+#loginPage {
+  display: none;
+  /* width: 100%; */
+}
+
+#loginForm {
+  width: 550px;
+  height: 550px;
+  background-image: url("media/loginBG.png");
 }
