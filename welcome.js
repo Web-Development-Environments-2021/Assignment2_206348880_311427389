@@ -19,6 +19,32 @@ $(document).ready(function() {
 });
 
 
+function aboutModalDialog(title ,content){	
+	// inject message according game over specific reason
+	$("#aboutContent").text(content);
+    $("#aboutPage").dialog({
+		open: function() {
+			// click outside close
+			$('.ui-widget-overlay').bind('click', function(){
+				$("#aboutPage").dialog('close');
+			})
+			},
+		resizable: false,
+		height: "auto",
+		title: title,
+		width: 800,
+		modal: true,
+		show: {effect: 'fade', duration: 250},
+		hide: { effect: "explode", duration: 1000 },
+		buttons: {
+		Close: function() {
+			$( this ).dialog( "close" );
+		}
+	}
+    });
+}
+
+
 
 function toggleSignUp(){
     $("#welcomePage").toggle();
@@ -89,7 +115,7 @@ function submitLogin(){
     let password = $("#loginPassword").val();
     if (userName in registeredUsers){
         if(registeredUsers[userName] == password){
-            alert("successfully Login!");
+            // alert("successfully Login!");
             $("#loginPage").toggle();
             $("#settingsPage").toggle();
         }

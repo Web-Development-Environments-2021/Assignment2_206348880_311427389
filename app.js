@@ -51,13 +51,14 @@ var right;
 var loserSound;
 var backgroundSound;
 
+var endGameModal;
+
 
 window.addEventListener("load", setUpGame, false);
 
 function setUpGame(){
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
-
 	// add backgorund
 
 	// add music
@@ -96,7 +97,7 @@ function reset(){
 	isClockEaten = false;
 	isPillEaten = false;
 	keysDown = {};
-	life = 5;
+	life = 1;
 	score = 0;
 	shape.i = undefined;
 	shape.j = undefined;
@@ -228,20 +229,35 @@ function toggleNewGameSettings(){
 }
 
 
-function closeModal(){
-	let modal = document.querySelector("#endGameModal");
-	modal.close('Ok! 🤠');
-	$("#modalContent").text('');
+// window.onclick = function(event) {
+// 	if (event.target == endGameModal) {
+// 		endGameModal.style.display = "none";
+// 	}
+// }
 
-}
-
-function gameOverDialog(content){
-	let modal = document.querySelector("#endGameModal");
+function dinamicModalDialog(title ,content){	
+	// inject message according game over specific reason
 	$("#modalContent").text(content);
-	// let paragraph = document.querySelector("#modalContent");
-	// let text = document.createTextNode(content);
-	// paragraph.appendChild(text);
-	modal.showModal();
+    $("#endGameModal").dialog({
+		open: function() {
+			// click outside close
+			$('.ui-widget-overlay').bind('click', function(){
+				$("#endGameModal").dialog('close');
+			})
+			},
+		resizable: false,
+		height: "auto",
+		title: title,
+		width: 400,
+		modal: true,
+		show: {effect: 'fade', duration: 250},
+		hide: { effect: "explode", duration: 1000 },
+		buttons: {
+		Close: function() {
+			$( this ).dialog( "close" );
+		}
+	}
+  	});
 }
 
 function endGame(reason){
@@ -251,22 +267,17 @@ function endGame(reason){
 	window.clearInterval(intervalTimer);
 	if (reason == "life"){
 		loserSound.play();
-		gameOverDialog("Loser! Just a few rounds and you will be better...");
-		// alert("Loser!")
+		dinamicModalDialog("GAME OVER!", "Loser! Just a few rounds and you will be better...");
 	}
 	else if (reason == "time" && score < 100){
 		let message = "You are better than " + score + " points!";
-		gameOverDialog(message);
-		// alert("You are better than " + score + " points!")
+		dinamicModalDialog("GAME OVER!", message);
 	}
 	else if (reason == "time" && score >= 100){
-		gameOverDialog("Winner!!!");
-		// alert("Winner!!!")
+		dinamicModalDialog("GAME OVER!", "Winner!!!");
 	}
 	else if(reason == "food"){
-		gameOverDialog("You are the best!!!");
-		// console.log("You are the best!!!")
-		// alert("You are the best!!!")
+		dinamicModalDialog("GAME OVER!", "You are the best!!!");
 	}
 	// toggleNewGameSettings();
 }
