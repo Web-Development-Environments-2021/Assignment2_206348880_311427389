@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>TG Pacman</title>
+    <link rel="icon" href="media/pageIcon.png" type="image/gif" sizes="16x16" />
+
     <script src="./jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="signUp.css">
+    <!--Google's fonts-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Abril Fatface|Exo"
+    />
     <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
@@ -10,6 +19,13 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--Icons-->
+    <script
+    src="https://kit.fontawesome.com/e211f6a94b.js"
+    crossorigin="anonymous"
+  ></script>
     <!--link rel="stylesheet" href="/resources/demos/style.css" /-->
     <script type="text/javascript" src="./welcome.js"></script>
     <script type="text/javascript" src="./settings.js"></script>
@@ -36,6 +52,10 @@
         <button id="Login" class="welcomeButton" onclick="showLogin()">
           Login
         </button>
+
+        <!-- move to menu -->
+        <button id="about" onclick="aboutModalDialog('ABOUT' ,'content')">About</button>
+
       </div>
 
       <div id="signUpPage">
@@ -46,18 +66,28 @@
           id="signUpForm"
           name="signUpForm"
         >
+          <i class="fas fa-user-circle"></i>
           <label>User Name:</label>
           <input type="text" id="userName" name="userName" />
           <br />
+
+          <i class="fas fa-ghost"></i>
           <label>Password:</label>
           <input type="password" id="password" name="password" />
           <br />
+
+          <i class="fas fa-user-alt"></i>
           <label>Full Name:</label>
           <input type="text" id="fullName" name="fullName" />
           <br />
+
+          <i class="fa fa-envelope icon"></i>
           <label>E-Mail:</label>
           <input type="text" id="email" name="email" />
           <br />
+
+          <i class="fas fa-robot"></i>
+          <i class="fas fa-birthday-cake"></i>
           <label>Birthday:</label>
           <input type="text" id="datepicker" name="birthday" />
           <script>
@@ -65,6 +95,7 @@
               $("#datepicker").datepicker();
             });
           </script>
+
           <input type="submit" name="" id="submit" value="submit" />
         </form>
       </div>
@@ -278,17 +309,30 @@
         </audio>
       </div>
 
-      <dialog id="endGameModal" class="endGameModal">
-        <h3>GAME OVER! 👋</h3>
-        <p id="modalContent"></p>
-        <div class="actions">
-          <button id="closeBTN" onclick="closeModal()" class="small close-modal-btn">Close</button>
+      <!-- check if need to replace to dialog and show modal -->
+      <!-- class="endGameModal" -->
+      <dialog>
+        <div id="endGameModal">
+          <p id="modalContent">Diamic Content</p>
         </div>
       </dialog>
 
+      <!-- <dialog id="endGameModal">
+        <p id="modalContent">k</p>
+      </dialog> -->
+
+    
+      <dialog>
+        <div id="aboutPage">
+          <p id="aboutContent">about Content</p>
+          <!-- <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript" ></script>
+          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="gal-agasi-188284207" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://il.linkedin.com/in/gal-agasi-188284207?trk=profile-badge">Gal Agasi</a></div>
+          <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="tomer-kelner-819938210" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://il.linkedin.com/in/tomer-kelner-819938210?trk=profile-badge">Tomer Kelner</a></div> -->
+        </div>
+      </dialog>
     
 
-      <div id="aboutPage">about US!!!</div>
 
 
 
