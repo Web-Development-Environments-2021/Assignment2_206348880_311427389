@@ -13,7 +13,7 @@ ul li {
     display: inline-block;
     padding: 10px 10px;
     cursor: pointer;
-    transition: all 1.5s ease;
+    transition: all 1s ease;
 }
 
 ul li a{
@@ -22,8 +22,26 @@ ul li a{
 
 ul li:hover {
     background-color: black;
+    transform: scale(1.2);
 }
 
 ul li:hover a{
     color: white;
+}
+
+.fa-facebook{
+    color: #3b5998;
+}
+
+.fa-linkedin-in{
+    color: #0077b5;
+}
+
+#footer{
+    text-align: center;
+}
+
+.mailus{
+    text-decoration: none;
+    color: black;
 }
