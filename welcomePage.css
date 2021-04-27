@@ -1,5 +1,4 @@
 header {
-  /* background-color: rgb(237, 179, 255); */
   background-color: rgb(255, 255, 143);
   display: flex;
   justify-content: space-between;
@@ -83,7 +82,8 @@ header {
 }
 
 .overlay {
-  height: 100%;
+  margin-top: 6%;
+  height: 70%;
   width: 0;
   position: fixed;
   z-index: 1;
@@ -97,7 +97,7 @@ header {
 
 .overlay-content {
   position: relative;
-  top: 25%;
+  top: 15%;
   width: 100%;
   text-align: center;
   margin-top: 30px;
