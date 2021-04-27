@@ -39,7 +39,6 @@ textarea {
 
 #submit,
 #loginbtn {
-  /* background-color: rgb(244, 255, 185); */
   border-radius: 15px;
   padding: 13px 30px;
   border: 5px solid white;
@@ -48,7 +47,6 @@ textarea {
   display: flex;
   font-family: "Exo";
   font-size: 18px;
-  /* margin-top: 25px; */
   transition: transform 0.2s;
 }
 

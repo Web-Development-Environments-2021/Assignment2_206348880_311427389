@@ -17,7 +17,7 @@
   width: 30%;
   text-align: center;
   margin-right: 3%;
-  padding: 73px;
+  padding: 50px;
   background-color: rgb(255, 255, 143);
   border: double 10px rgb(244, 255, 185);
   border-radius: 30px;
@@ -57,4 +57,24 @@
   border-style: solid;
   border-radius: 30px;
   margin-left: 10%;
+}
+
+#newRound {
+  border-radius: 15px;
+  padding: 20px;
+  border: 5px solid white;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: "Exo";
+  font-size: 18px;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+#newRound:hover {
+  background-color: rgb(244, 255, 185);
+  font-weight: bold;
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.1);
 }

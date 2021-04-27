@@ -283,7 +283,6 @@ function endGame(reason){
 	else if(reason == "food"){
 		dinamicModalDialog("GAME OVER!", "You are the best!!!");
 	}
-	// toggleNewGameSettings();
 }
 
 function startNewGame(){
