@@ -66,6 +66,8 @@ function aboutModalDialog(){
 //menu
 function openNav() {
     document.getElementById("myNav").style.width = "20%";
+    // document.getElementById("myNav").style.height = "70%";
+
 }
   
 function closeNav() {
