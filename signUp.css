@@ -22,14 +22,12 @@ form {
   border-radius: 30px;
 }
 
-input[type="text"],
+.text,
 input[type="password"],
 textarea {
   width: 100%;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px 0px 20px 0px;
   border-radius: 10px;
-  padding: 13px 30px;
   border: 2px solid rgb(255, 255, 255);
   background-color: rgb(244, 255, 185);
   box-sizing: border-box;
