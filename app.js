@@ -111,7 +111,6 @@ function reset(){
 	//move to settings
 }
 
-
 function monstersLocations(){
 	for(let i = 0; i < numOfMonsters; i++){
 		if (i == 0){
@@ -240,7 +239,6 @@ function toggleNewGameSettings(){
 	$("#gamePage").toggle();
 }
 
-
 function dinamicModalDialog(title ,content){	
 	// inject message according game over specific reason
 	$("#modalContent").text(content);
@@ -299,7 +297,6 @@ function main(){
 	Draw();
 	detectCollisions();
 }
-
 
 function checkTimeLimit(){
 	var currentTime = new Date();

@@ -1,15 +1,24 @@
-#signUpPage {
-  /* background-image: url("media/HD-Pacman-Wallpaper.jpg"); */
+#signUpPage,
+#loginPage {
+  background-image: url("media/welcomeBG.jpg");
+  height: 600px;
+  width: 100%;
+  /* position: relative; */
   display: none;
 }
 
+#loginForm {
+  position: absolute;
+  margin: 10% 35% 10% 35%;
+}
+
 form {
-  width: 40%;
+  width: 30%;
   padding: 20px;
   text-align: left;
   margin: auto;
-  /* background-image: url("media/sectionBG.jpg"); */
-  border: double 10px rgb(255, 154, 171);
+  background-color: rgb(255, 255, 143);
+  border: double 10px rgb(244, 255, 185);
   border-radius: 30px;
 }
 
@@ -22,7 +31,7 @@ textarea {
   border-radius: 10px;
   padding: 13px 30px;
   border: 2px solid rgb(255, 255, 255);
-  background-color: rgb(250, 223, 229);
+  background-color: rgb(244, 255, 185);
   box-sizing: border-box;
   resize: vertical;
   padding: 12px;
@@ -30,8 +39,9 @@ textarea {
   font-size: 14px;
 }
 
-#submit {
-  /* background-image: url("media/menuBG.jpg"); */
+#submit,
+#loginbtn {
+  /* background-color: rgb(244, 255, 185); */
   border-radius: 15px;
   padding: 13px 30px;
   border: 5px solid white;
@@ -44,8 +54,9 @@ textarea {
   transition: transform 0.2s;
 }
 
-#submit:hover {
-  background-color: rgb(250, 223, 229);
+#submit:hover,
+#loginbtn:hover {
+  background-color: rgb(244, 255, 185);
   font-weight: bold;
   -ms-transform: scale(1.5);
   -webkit-transform: scale(1.5);
@@ -53,22 +64,10 @@ textarea {
 }
 
 .valid {
-  color: #4caf50;
   font-weight: bold;
 }
 
 .error {
   color: red;
   font-weight: bold;
-}
-
-#loginPage {
-  display: none;
-  /* width: 100%; */
-}
-
-#loginForm {
-  width: 550px;
-  height: 550px;
-  background-image: url("media/loginBG.png");
 }

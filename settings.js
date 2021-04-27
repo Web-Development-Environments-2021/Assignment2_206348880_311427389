@@ -9,8 +9,6 @@ function updateFoodAmount(){
   output.innerHTML = slider.value;
 }
 
-
-
 function setUserUp(upEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		up = upEvent.keyCode;
@@ -31,6 +29,7 @@ function setUserLeft(leftEvent) {
 		document.getElementById("left").value = leftEvent.key;
 	}
 } 
+
 function setUserRight(rightEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		right = rightEvent.keyCode;
@@ -70,7 +69,6 @@ function setDefaultKeyboard(){
 	document.getElementById("right").value = "ArrowRight"
 
 }
-
 
 function setDefaultSettings(){
 	//default keyboard
@@ -129,7 +127,6 @@ function setRandomSettings(){
 	let randomMonstersAmount =  Math.floor(Math.random() * 4) + 1;
 	document.getElementById("monstersAmount").value = randomMonstersAmount;
 }
-
 
 function checkValidKey(key){
 	if (key == up || key == down || key == right || key == left){
