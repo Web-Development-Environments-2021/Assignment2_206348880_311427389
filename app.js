@@ -184,14 +184,7 @@ function prepareBoard(){
 	movingScoreLocation()
 
 	initWalls();
-	// walls
-	// let i = 5;
-	// while (i > 0){
-	// 	let emptyCell = findRandomEmptyCell(board);
-	// 	board[emptyCell[0]][emptyCell[1]] = 1;
-	// 	i--;
-	// }
-
+	
 	//25 point food
 	while (counter25 > 0){
 		let emptyCell = findRandomEmptyCell(board);
@@ -622,7 +615,7 @@ function Draw() {
 			} else if (board[i][j] == 1) {
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 60, 60);
-				context.fillStyle = "grey"; //color
+				context.fillStyle = "black";
 				context.fill();
 			}
 

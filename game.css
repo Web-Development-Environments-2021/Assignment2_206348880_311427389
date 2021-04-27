@@ -1,0 +1,60 @@
+#gamePage {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(227, 227, 228);
+}
+
+.leftRight {
+  margin: auto;
+}
+
+#leftGamePage {
+  margin-left: 10%;
+  width: 70%;
+}
+
+#rightGamePage {
+  width: 30%;
+  text-align: center;
+  margin-right: 3%;
+  padding: 73px;
+  background-color: rgb(255, 255, 143);
+  border: double 10px rgb(244, 255, 185);
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#gameInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  /* margin: auto; */
+}
+
+.gameInfo {
+  margin: auto;
+  font-weight: bold;
+}
+
+.gameLbl {
+  width: 45%;
+  margin: 10px 0px 10px 0px;
+  border-radius: 10px;
+  padding: 13px;
+  text-align: center;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(244, 255, 185);
+  box-sizing: border-box;
+  resize: vertical;
+  font-family: "Exo";
+  font-size: 16px;
+  font-weight: bold;
+  /* margin: auto; */
+}
+
+#canvas {
+  border: black 10px;
+  border-style: solid;
+  border-radius: 30px;
+  margin-left: 10%;
+}

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TG Pacman</title>
+    <title>Pacman-TG</title>
     <link rel="icon" href="media/images/iconTitle.png" type="image/icon type"/>
     <script src="./jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="signUp.css">
+    <!-- <link rel="stylesheet" href="signUp.css"> -->
     <link rel="stylesheet" href="welcomePage.css">
     <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="game.css">
     <!--Google's fonts-->
     <link
       rel="stylesheet"
@@ -47,21 +48,28 @@
 
   <body>
     <header>
-      <!-- menu -->
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-      <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-          <a href="#" onclick="openWelcomeMenu()">Welcome</a>
-          <a href="#" onclick="openSignUpMenu()">Sign Up</a>
-          <a href="#" onclick="openLoginMenu()">Login</a>
-          <a href="#" onclick="aboutModalDialog()">About</a>
+      <div id="appContainer">
+        <img id="logo" class="appD" src="media/images/logo.jpg" alt="logo pic">
+        <div id="appName" class="appD">
+          Pacman-TG
         </div>
       </div>
-      logoooooooooooooooo
+      <div id="names">
+        Tomer Kelner&nbsp;&&nbsp;Gal Agasi
+      </div>
     </header>
 
-
+    <!-- menu -->
+    <span id="hamburger" onclick="openNav()">&#9776;</span>
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <a href="#" onclick="openWelcomeMenu()">Welcome</a>
+        <a href="#" onclick="openSignUpMenu()">Sign Up</a>
+        <a href="#" onclick="openLoginMenu()">Login</a>
+        <a href="#" onclick="aboutModalDialog()">About</a>
+      </div>
+    </div>
     <div id="content">
       <div id="welcomePage">
         <div id="welcomeContainer">
@@ -282,23 +290,54 @@
       </div>
 
       <div id="gamePage">
-        <div id="score">
-          <label for="lblScore">SCORE:</label>
-          <input id="lblScore" type="text" />
-        </div>
-        <div id="time">
-          <label for="lblTime">TIME:</label>
-          <input id="lblTime" type="text" />
-        </div>
-        <div id="life">
-          <label for="lblLife">Life:</label>
-          <input id="lblLife" type="text"/>
 
-        <button id="newRound" onclick="anotherRound()">
-          Another Round
-        </button>
+        <div id="leftGamePage" class="leftRight"> 
+          <div id="gameInfoContainer">
+            <div id="score" class="gameInfo">
+              <label for="lblScore">SCORE:</label>
+              <input id="lblScore" type="text" class="gameLbl"/>
+            </div>
+            <div id="time" class="gameInfo">
+              <label for="lblTime">TIME REMAIN:</label>
+              <input id="lblTime" type="text" class="gameLbl"/>
+            </div>
+            <div id="life" class="gameInfo">
+              <label for="lblLife">LIFE:</label>
+              <input id="lblLife" type="text" class="gameLbl"/>
+            </div> 
+            <div id="user" class="gameInfo">
+              <label for="lblUser">USER NAME:</label>
+              <input id="lblUser" type="text" class="gameLbl"/>
+            </div> 
+          </div>
 
-        <canvas id="canvas" height="600" width="600"></canvas>
+          <canvas id="canvas" height="600" width="600"></canvas>
+        </div>
+
+        <div id="rightGamePage" class="leftRight">
+          <div id="gameSettings">
+            <h3>Game Settings</h3>
+            <br>
+            <p id="foodLbl">   
+            </p>
+            <p id="monstersLbl">
+            </p>
+            <p id="timeLbl">
+            </p>
+            <p id="kbrdLbl">
+            </p>
+
+          </div>
+          <button id="newRound" onclick="anotherRound()">
+            Another Round
+          </button>
+        </div>
+
+
+ 
+
+
+
         <img
           id="monster1"
           class="monsters"
