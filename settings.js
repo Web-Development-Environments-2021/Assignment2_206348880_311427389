@@ -4,9 +4,13 @@
 function updateFoodAmount(){
   let slider = document.getElementById("foodAmount");
   let output = document.getElementById("foodValue");
-  // let slider = $("#foodAmount");
-  // let output = $("#foodValue");
   output.innerHTML = slider.value;
+}
+
+function changeVolume() {
+	let slider = document.getElementById("soundValue");
+	let output = document.getElementById("volumeValue");
+	output.innerHTML = slider.value;
 }
 
 function setUserUp(upEvent) {
@@ -56,6 +60,19 @@ function userSettings(){
 	let minutes = parseInt(document.getElementById("minutes").value);
 	let seconds = parseInt(document.getElementById("seconds").value);
 	timeLimit = minutes * 60 + seconds;
+
+	//volume
+	backgroundSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
+
+	soundOff = $('#soundOff').is(':checked')
+	if (!soundOff) {
+		playMusic();
+	}
+}
+
+function playMusic() {
+	backgroundSound.play();
+	backgroundSound.loop = true;
 }
 
 function setDefaultKeyboard(){
@@ -92,30 +109,30 @@ function setDefaultSettings(){
 	//default num of monsters
 	document.getElementById("monstersAmount").value = 1;
 
-
 	//default sound
+	document.getElementById("soundValue").value = 50;
+	document.getElementById("volumeValue").innerHTML = 50;
 }
 
 function setRandomSettings(){
-	//default keyboard
+	//Random keyboard
 	setDefaultKeyboard();
 
-	//default food number
+	//Random food number
 	let randomFoodAmount = Math.floor(Math.random() * 41) + 50;
 	document.getElementById("foodAmount").value = randomFoodAmount;
 	document.getElementById("foodValue").innerHTML = randomFoodAmount;
 
-	//default food colors
+	//Random food colors
 	let randomColor5 = '#'+Math.floor(Math.random()*16777215).toString(16);
 	document.getElementById("5").value = randomColor5;
-	// document.getElementById("5").value = "#e66465";
 	let randomColor15 = '#'+Math.floor(Math.random()*16777215).toString(16);
 	document.getElementById("15").value = randomColor15;
 	let randomColor25 = '#'+Math.floor(Math.random()*16777215).toString(16);
 	document.getElementById("25").value = randomColor25;
 
 
-	//default time
+	//Random time
 	// max time for game???
 	let randomMinutes =  Math.floor(Math.random() * 5) + 1;
 	document.getElementById("minutes").value = randomMinutes;
@@ -123,7 +140,7 @@ function setRandomSettings(){
 	document.getElementById("seconds").value = randomSeconds;
 
 
-	//default num of monsters
+	//Random num of monsters
 	let randomMonstersAmount =  Math.floor(Math.random() * 4) + 1;
 	document.getElementById("monstersAmount").value = randomMonstersAmount;
 }

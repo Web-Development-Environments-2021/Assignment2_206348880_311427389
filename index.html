@@ -2,11 +2,12 @@
 <html>
   <head>
     <title>TG Pacman</title>
-    <link rel="icon" href="media/pageIcon.png" type="image/gif" sizes="16x16" />
+    <link rel="icon" href="media/images/iconTitle.png" type="image/icon type"/>
     <script src="./jquery-3.4.1.slim.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="signUp.css">
     <link rel="stylesheet" href="welcomePage.css">
+    <link rel="stylesheet" href="settings.css">
     <!--Google's fonts-->
     <link
       rel="stylesheet"
@@ -248,8 +249,21 @@
           </div>
 
           <h3>Sound</h3>
-          <div>
-            <p></p>
+          <div id="sound">
+            <p>Volume:</p>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              class="soundSlider"
+              id="soundValue"
+              oninput="changeVolume()"
+            />
+            <p>Value: <span id="volumeValue"></span></p>
+            <input type="checkbox" id="soundOff" name="soundOff" value="Sound off">
+            <label for="soundOff">Sound Off</label><br>
+
           </div>
         </div>
 
@@ -369,8 +383,8 @@
     <footer id="footer">
      You can share the game via:
       <ul>
-        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://web-development-environments-2021.github.io/311427389/" data-href="https://web-development-environments-2021.github.io/311427389/"><i class="fab fa-facebook"></i></a></li>
-        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://web-development-environments-2021.github.io/311427389/"><i class="fab fa-linkedin-in"></i></a></li>
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/" data-href="https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/"><i class="fab fa-facebook"></i></a></li>
+        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/"><i class="fab fa-linkedin-in"></i></a></li>
       </ul>
     
      <a href="mailto:tomerkel@post.bgu.ac.il" class="mailus">contect us</a></p>
