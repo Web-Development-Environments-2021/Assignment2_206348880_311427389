@@ -48,6 +48,7 @@ var left;
 var right;
 
 //variables for sound
+var soundOff;
 var loserSound;
 var backgroundSound;
 
@@ -86,10 +87,10 @@ function newGame(){
 	// decide where to put settings
 	reset();
 	prepareBoard();
-	backgroundSound.play()
 	start_time = new Date();
 	intervalTimer = setInterval(main, 150);
 }
+
 
 // need to add settings inside
 function reset(){
@@ -97,7 +98,7 @@ function reset(){
 	isClockEaten = false;
 	isPillEaten = false;
 	keysDown = {};
-	life = 1;
+	life = 5;
 	score = 0;
 	shape.i = undefined;
 	shape.j = undefined;
@@ -231,6 +232,10 @@ function initWalls(){
 }
 
 function anotherRound(){
+	if (!backgroundSound.paused){
+		backgroundSound.pause();
+		backgroundSound.currentTime = 0;
+	}
 	window.clearInterval(intervalTimer);
 	toggleNewGameSettings();
 }
@@ -272,7 +277,9 @@ function endGame(reason){
 	backgroundSound.currentTime = 0;
 	window.clearInterval(intervalTimer);
 	if (reason == "life"){
-		loserSound.play();
+		if (!soundOff) {
+			loserSound.play();
+		}
 		dinamicModalDialog("GAME OVER!", "Loser! Just a few rounds and you will be better...");
 	}
 	else if (reason == "time" && score < 100){
@@ -314,7 +321,6 @@ function detectCollisions(){
 	detectMovingScoreCollisions();
 	detectClockCollisions();
 	detectPillCollisions();
-	// console.log("count: " + ballsCount);
 	if (ballsCount == 0){
 		endGame("food");
 	}
@@ -329,7 +335,6 @@ function detectMovingScoreCollisions(){
 			score += 50;
 			isMovingEaten = true;
 			//check
-			// board[shape.i][shape.j] = 0;
 			//need add sound
 		}
 	}
@@ -354,7 +359,6 @@ function detectMonstersCollisions(){
 			}
 			//need to add pop window with summary og score
 			else{
-				// lblLife.value = 0;
 				endGame("life");
 			}
 		}
@@ -419,9 +423,7 @@ function GetKeyPressed() {
 }
 
 function UpdatePosition() {
-	// if (!((shape.i == 0 || shape.i == 9) && (shape.j == 0 || shape.j == 9))){
 	board[shape.i][shape.j] = 0;
-	// }
 	var x = GetKeyPressed();
 	//up
 	if (x == 1) {
@@ -517,19 +519,19 @@ function monsterMoveRandomly(monster){
 	let move = false;
 	while(!move){
 		let dir = Math.floor(Math.random() * 4);
-		if(dir == 0 && board[monster.i][monster.j+1] != 1){
+		if(dir == 0 && monster.j+1 < 10 && board[monster.i][monster.j+1] != 1){
 			moveMonsterDown(monster);
 			move = true;
 		}
-		else if(dir == 1 && board[monster.i][monster.j-1] != 1){
+		else if(dir == 1 && monster.j-1 >= 0 && board[monster.i][monster.j-1] != 1){
 			moveMonsterUp(monster);
 			move = true;
 		}
-		else if (dir == 2 && board[monster.i+1][monster.j] != 1){
+		else if (dir == 2 && monster.i+1 < 10 && board[monster.i+1][monster.j] != 1){
 			moveMonsterRight(monster);
 			move = true;
 		}
-		else if (dir == 3 && board[monster.i-1][monster.j] != 1){
+		else if (dir == 3 && monster.i-1 >= 0 && board[monster.i-1][monster.j] != 1){
 			moveMonsterLeft(monster);
 			move = true;
 		}
@@ -636,14 +638,6 @@ function Draw() {
 			}
 		}
 	}
-
-
-	// console.log("matzoir: " + toDelete);
-
-
-	// // extra time clock
-	// let now = new Date();
-	// let timePassed = (now - start_time) / 1000;
 
 	if (clockIterator % 13 > 11 && isClockEaten == false){
 		drawClock();
