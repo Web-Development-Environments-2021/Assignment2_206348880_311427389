@@ -1,0 +1,71 @@
+#signUpPage,
+#loginPage {
+  background-image: url("../media/images/welcomeBG.jpg");
+  height: 600px;
+  width: 100%;
+  /* position: relative; */
+  display: none;
+}
+
+#loginForm {
+  position: absolute;
+  margin: 10% 35% 10% 35%;
+}
+
+form {
+  width: 30%;
+  padding: 20px;
+  text-align: left;
+  margin: auto;
+  background-color: rgb(255, 255, 143);
+  border: double 10px rgb(244, 255, 185);
+  border-radius: 30px;
+}
+
+.text,
+input[type="password"],
+textarea {
+  width: 100%;
+  margin: 10px 0px 20px 0px;
+  border-radius: 10px;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgb(244, 255, 185);
+  box-sizing: border-box;
+  resize: vertical;
+  padding: 12px;
+  font-family: "Exo";
+  font-size: 14px;
+}
+
+#submit,
+#loginbtn {
+  /* background-color: rgb(244, 255, 185); */
+  border-radius: 15px;
+  padding: 13px 30px;
+  border: 5px solid white;
+  cursor: pointer;
+  margin: 0 auto;
+  display: flex;
+  font-family: "Exo";
+  font-size: 18px;
+  /* margin-top: 25px; */
+  transition: transform 0.2s;
+}
+
+#submit:hover,
+#loginbtn:hover {
+  background-color: rgb(244, 255, 185);
+  font-weight: bold;
+  -ms-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.1);
+}
+
+.valid {
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
