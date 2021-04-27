@@ -2,11 +2,7 @@
 var registeredUsers = {"k":"k"};
 
 $(document).ready(function() {
-    // $("#settingsPage").hide();
-    // $("#signUpPage").hide();
-    // $("#loginPage").hide();
-    // $("#aboutPage").hide();
-    // $("#gamePage").hide();
+    openNav();
     $.validator.addMethod("allLettersRule", function(value) {
         return /^[A-Za-z]+$/.test(value);
      });
@@ -18,10 +14,32 @@ $(document).ready(function() {
     validateSignUp();
 });
 
+function openWelcomeMenu(){
+	$("#loginPage").hide();
+	$("#signUpPage").hide();
+	$("#settingsPage").hide();
+	$("#gamePage").hide();
+    $("#welcomePage").show();
+}
 
-function aboutModalDialog(title ,content){	
-	// inject message according game over specific reason
-	$("#aboutContent").text(content);
+function openSignUpMenu(){
+	$("#loginPage").hide();
+	$("#settingsPage").hide();
+	$("#welcomePage").hide();
+	$("#gamePage").hide();
+    $("#signUpPage").show();
+}
+
+function openLoginMenu(){
+    $("#signUpPage").hide();
+	$("#settingsPage").hide();
+	$("#welcomePage").hide();
+	$("#gamePage").hide();
+    $("#loginPage").show();
+}
+
+function aboutModalDialog(){	
+	// $("#aboutContent").text(content);
     $("#aboutPage").dialog({
 		open: function() {
 			// click outside close
@@ -31,7 +49,7 @@ function aboutModalDialog(title ,content){
 			},
 		resizable: false,
 		height: "auto",
-		title: title,
+		title: "About",
 		width: 800,
 		modal: true,
 		show: {effect: 'fade', duration: 250},
@@ -44,18 +62,20 @@ function aboutModalDialog(title ,content){
     });
 }
 
-
-
-function toggleSignUp(){
-    $("#welcomePage").toggle();
-    $("#signUpPage").toggle();
+//menu
+function openNav() {
+    document.getElementById("myNav").style.width = "20%";
+}
+  
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
 }
 
+//login functionality
 function showLogin(){
     $("#welcomePage").toggle();
     $("#loginPage").toggle();
 }
-
 
 function validateSignUp(){
     $("form[id='signUpForm']").validate({
@@ -99,17 +119,6 @@ function validateSignUp(){
     });
 }
   
-
-// function validateLogin(userName, password) {
-//     valid = false;
-//     if (userName in registeredUsers){
-//         if(registeredUsers[userName] == password){
-//             valid = true;
-//         }
-//     } 
-//     return valid; 
-// }
-
 function submitLogin(){
     let userName = $("#loginUserName").val();
     let password = $("#loginPassword").val();
@@ -140,6 +149,7 @@ function submitLogin(){
     return false;
 }
 
+//signUp functionality
 function submitSignUp(){
     let userName = $("#userName").val();
     if (!validUserName(userName)){
@@ -157,4 +167,9 @@ function submitSignUp(){
 
 function validUserName(userName){
     return !(userName in registeredUsers);
+}
+
+function toggleSignUp(){
+    $("#welcomePage").toggle();
+    $("#signUpPage").toggle();
 }

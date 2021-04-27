@@ -33,7 +33,7 @@
     <script type="text/javascript" src="./settings.js"></script>
     <script type="text/javascript" src="./app.js"></script>
 
-    <script src="https://kit.fontawesome.com/0e0032e592.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/0e0032e592.js" crossorigin="anonymous"></script> -->
 
     <script>
       $(function () {
@@ -47,9 +47,20 @@
 
   <body>
     <header>
+      <!-- menu -->
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+      <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+          <a href="#" onclick="openWelcomeMenu()">Welcome</a>
+          <a href="#" onclick="openSignUpMenu()">Sign Up</a>
+          <a href="#" onclick="openLoginMenu()">Login</a>
+          <a href="#" onclick="aboutModalDialog()">About</a>
+        </div>
+      </div>
       logoooooooooooooooo
     </header>
-    <menu type="context"></menu>
+
 
     <div id="content">
       <div id="welcomePage">
@@ -61,11 +72,6 @@
             Login
           </button>
         </div>
-
-
-        <!-- move to menu -->
-        <button id="about" onclick="aboutModalDialog('ABOUT' ,'content')">About</button>
-
       </div>
 
       <div id="signUpPage">
@@ -79,22 +85,25 @@
           <i class="fas fa-user-circle"></i>
           <label>User Name:</label>
           <input type="text" id="userName" name="userName" />
+          <br>
 
           <i class="fas fa-ghost"></i>
           <label>Password:</label>
           <input type="password" id="password" name="password" />
+          <br>
 
           <i class="fas fa-user-alt"></i>
           <label>Full Name:</label>
           <input type="text" id="fullName" name="fullName" />
+          <br>
 
           <i class="fa fa-envelope icon"></i>
           <label>E-Mail:</label>
           <input type="text" id="email" name="email" />
+          <br>
 
-          <i class="fas fa-robot"></i>
           <i class="fas fa-birthday-cake"></i>
-          <label>Birthday:</label>
+          <label>Birth Date:</label>
           <input type="text" id="datepicker" name="birthday" />
           <script>
             $(function () {
@@ -102,7 +111,8 @@
             });
           </script>
 
-          <input type="submit" name="" id="submit" value="submit" />
+          <input type="submit" name="" id="submit" value="submit 👌" />
+
         </form>
       </div>
 
@@ -120,7 +130,7 @@
           <label>Password:</label>
           <input type="password" id="loginPassword" />
 
-          <input type="submit" name="" id="loginbtn" value="Login" />
+          <input type="submit" name="" id="loginbtn" value="Login ✔️" />
         </form>
       </div>
 
@@ -339,18 +349,34 @@
       <!-- <dialog id="endGameModal">
         <p id="modalContent">k</p>
       </dialog> -->
+       
+      </div>
 
-    
       <dialog>
         <div id="aboutPage">
-          <p id="aboutContent">about Content</p>
           <!-- <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript" ></script>
           <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="gal-agasi-188284207" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://il.linkedin.com/in/gal-agasi-188284207?trk=profile-badge">Gal Agasi</a></div>
-          <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
           <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="tomer-kelner-819938210" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://il.linkedin.com/in/tomer-kelner-819938210?trk=profile-badge">Tomer Kelner</a></div> -->
+          jQuery Plugin we used:
+          <br />
+          <br />
+          <i class="fas fa-ghost"></i>
+          The open-close Menu
+          <br />
+          <i class="fas fa-ghost"></i>
+          The Accordion plugin inside Settings page
+          <br />
+          <br />
+          The difficulties we faced:
+          <br />
+          <br />
+          <i class="fas fa-bug"></i>
+          Creating the functionality of the monsters movement in an intelligent way.
+          <br />
+          <i class="fas fa-bug"></i>
+          Applying an object appearance functionality at certain times during the game (clock, fruit, extra life pill - bonus functionality).
         </div>
       </dialog>
-   
     </div>
 
 
@@ -362,7 +388,7 @@
       </ul>
     
      <a href="mailto:tomerkel@post.bgu.ac.il" class="mailus">contect us</a></p>
-     </footer>
+    </footer>
   </body>
 </html>
 
