@@ -1,4 +1,9 @@
 
+var lblup = "ArrowUp";
+var lbldown = "ArrowDown";
+var lblright = "ArrowRight";
+var lblleft = "ArrowLeft";
+
 // food settings
 // Update the current slider value (each time you drag the slider handle)
 function updateFoodAmount(){
@@ -16,6 +21,7 @@ function changeVolume() {
 function setUserUp(upEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		up = upEvent.keyCode;
+		lblup = upEvent.key;
 		document.getElementById("up").value = upEvent.key;
 	}
 }
@@ -23,6 +29,7 @@ function setUserUp(upEvent) {
 function setUserDown(downEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		down = downEvent.keyCode;
+		lbldown = downEvent.key;
 		document.getElementById("down").value = downEvent.key;
 	}
 }  
@@ -30,6 +37,7 @@ function setUserDown(downEvent) {
 function setUserLeft(leftEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		left = leftEvent.keyCode;
+		lblleft = leftEvent.key;
 		document.getElementById("left").value = leftEvent.key;
 	}
 } 
@@ -37,6 +45,7 @@ function setUserLeft(leftEvent) {
 function setUserRight(rightEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		right = rightEvent.keyCode;
+		lblright = rightEvent.key;
 		document.getElementById("right").value = rightEvent.key;
 	}
 
@@ -48,6 +57,7 @@ function userSettings(){
 	color5 = document.getElementById("5").value;
 	color15 = document.getElementById("15").value;
 	color25 = document.getElementById("25").value;
+	$("#foodLbl").text("Food Amount: "+ ballsCount);
 
 	//Monsters user inputs
 	numOfMonsters = document.getElementById("monstersAmount").value;
@@ -55,11 +65,15 @@ function userSettings(){
 	for (var i = 0; i < numOfMonsters; i++){
 		monsters[i] = new Object();
 	}
+	$("#monstersLbl").text("Monsters Amount: " + numOfMonsters);
+
 
 	//Time user inputs
 	let minutes = parseInt(document.getElementById("minutes").value);
 	let seconds = parseInt(document.getElementById("seconds").value);
 	timeLimit = minutes * 60 + seconds;
+	$("#timeLbl").text("Play Time: " + timeLimit + "s");
+	$("#kbrdLbl").text("Up: "+lblup+", Down: "+lbldown +", Left: "+lblleft+", Right: "+lblright);
 
 	//volume
 	backgroundSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;

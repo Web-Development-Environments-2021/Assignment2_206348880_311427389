@@ -2,6 +2,7 @@
 var registeredUsers = {"k":"k"};
 
 $(document).ready(function() {
+    $("#gamePage").hide();
     openNav();
     $.validator.addMethod("allLettersRule", function(value) {
         return /^[A-Za-z]+$/.test(value);
