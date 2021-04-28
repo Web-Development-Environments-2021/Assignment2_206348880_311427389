@@ -99,6 +99,8 @@ function userSettings(){
 
 	
 	backgroundSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
+	loserSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
+	winnerSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
 	soundOff = $('#soundOff').is(':checked');
 
 	if (!soundOff) {

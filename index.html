@@ -45,7 +45,6 @@
           heightStyle: "content",
           collapsible: true,
         });
-
       });
     </script>
   </head>
@@ -67,9 +66,7 @@
     <!-- menu -->
     <span id="hamburger" onclick="openNav()">&#9776;</span>
     <div id="myNav" class="overlay">
-      <a href="#" class="closebtn" onclick="closeNav()"
-        >&times;</a
-      >
+      <a href="#" class="closebtn" onclick="closeNav()">&times;</a>
       <div class="overlay-content">
         <a href="#" onclick="openWelcomeMenu()">Welcome</a>
         <a href="#" onclick="openSignUpMenu()">Sign Up</a>
@@ -166,7 +163,7 @@
               oninput="updateFoodAmount()"
             />
             <p>Value: <span id="foodValue"></span></p>
-            <br>
+            <br />
             <p>Food Colors:</p>
             <div>
               <input type="color" id="5" name="5" value="#e66465" />
@@ -217,7 +214,7 @@
               onkeydown="setUserDown(event)"
               value="ArrowDown"
             />
-            <br>  
+            <br />
             <label>Left:</label>
             <input
               type="text"
@@ -266,8 +263,13 @@
               oninput="changeVolume()"
             />
             <p><span id="volumeValue"></span></p>
-            <input type="checkbox" id="soundOff" name="soundOff" value="Sound off">
-            <label id="lblOff" for="soundOff">Sound Off</label><br>
+            <input
+              type="checkbox"
+              id="soundOff"
+              name="soundOff"
+              value="Sound off"
+            />
+            <label id="lblOff" for="soundOff">Sound Off</label><br />
           </div>
         </div>
 
@@ -289,7 +291,9 @@
           >
             Random
           </button>
-          <button class = "settingButton" id="newGame" onclick="startNewGame()">New Game&nbsp;&nbsp;<i class="fas fa-trophy"></i></button>
+          <button class="settingButton" id="newGame" onclick="startNewGame()">
+            New Game&nbsp;&nbsp;<i class="fas fa-trophy"></i>
+          </button>
         </div>
       </div>
 
@@ -389,7 +393,7 @@
           <source src="media/sound/loser.mp3" type="audio/mpeg" />
         </audio>
         <audio id="winSound">
-          <source src="media/sound/winner.mp3" type="audio/mpeg"/>
+          <source src="media/sound/winner.mp3" type="audio/mpeg" />
         </audio>
         <audio id="backgroundSound">
           <source src="media/sound/background.mpeg" type="audio/mpeg" />
@@ -452,15 +456,19 @@
 
       <dialog>
         <div id="aboutPage">
-          <div id = "namesld">
-            <a id="tomer" href="https://www.linkedin.com/in/tomer-kelner-819938210/">Tomer Kelner  
-            <i class="fab fa-linkedin-in"></i>
+          <div id="namesld">
+            <a
+              id="tomer"
+              href="https://www.linkedin.com/in/tomer-kelner-819938210/"
+              >Tomer Kelner
+              <i class="fab fa-linkedin-in"></i>
             </a>
-            <a id="gal" href="https://www.linkedin.com/in/gal-agasi-188284207/">Gal Agasi  
-            <i class="fab fa-linkedin-in"></i>
+            <a id="gal" href="https://www.linkedin.com/in/gal-agasi-188284207/"
+              >Gal Agasi
+              <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
-          <br>
+          <br />
           jQuery Plugin we used:
           <br />
           <br />

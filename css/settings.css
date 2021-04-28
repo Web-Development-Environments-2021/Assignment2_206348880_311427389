@@ -69,52 +69,53 @@
   font-family: "Exo";
   font-size: 14px;
   text-align: center;
+  font-weight: bold;
 }
 
 .settingButton {
-	box-shadow:inset 0px 1px 0px 0px #d26ee6;
-	background:linear-gradient(to bottom, #dfa4eb 5%, #d27fe3 100%);
-	background-color:#dfa4eb;
-	border-radius:10px;
-	border:2px solid #ab4fbd;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:"Exo";
-	font-size:15px;
-	font-weight:bold;
-	padding:10px 25px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #9a10b5;
-
+  box-shadow: inset 0px 1px 0px 0px #d26ee6;
+  background: linear-gradient(to bottom, #dfa4eb 5%, #d27fe3 100%);
+  background-color: #dfa4eb;
+  border-radius: 10px;
+  border: 2px solid #ab4fbd;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Exo";
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #9a10b5;
   width: 25%;
   display: block;
   margin-left: 30%;
   margin-top: 7%;
 }
+
 .settingButton:hover {
-	background:linear-gradient(to bottom, #d27fe3 5%, #dfa4eb 100%);
-	background-color:#d27fe3;
-}
-.settingButton:active {
-	position:relative;
-	top:1px;
+  background: linear-gradient(to bottom, #d27fe3 5%, #dfa4eb 100%);
+  background-color: #d27fe3;
 }
 
-#newGame{
+.settingButton:active {
+  position: relative;
+  top: 1px;
+}
+
+#newGame {
   margin-top: 20%;
   transition: all 0.1s ease;
-
 }
 
 #newGame:hover {
   transform: scale(1.4);
-  
 }
 
-#lblOff{
+#lblOff {
   float: right;
 }
+
 #soundOff {
   float: right;
   margin-top: 4px;
@@ -122,6 +123,6 @@
 }
 
 #soundValue,
-#volumeValue{
+#volumeValue {
   float: left;
 }
