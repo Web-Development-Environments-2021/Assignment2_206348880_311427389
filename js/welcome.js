@@ -16,6 +16,9 @@ $(document).ready(function() {
 });
 
 function openWelcomeMenu(){
+    if (intervalTimer != undefined){
+		window.clearInterval(intervalTimer);
+	}
 	$("#loginPage").hide();
 	$("#signUpPage").hide();
 	$("#settingsPage").hide();
@@ -24,6 +27,9 @@ function openWelcomeMenu(){
 }
 
 function openSignUpMenu(){
+    if (intervalTimer != undefined){
+		window.clearInterval(intervalTimer);
+	}
 	$("#loginPage").hide();
 	$("#settingsPage").hide();
 	$("#welcomePage").hide();
@@ -32,6 +38,9 @@ function openSignUpMenu(){
 }
 
 function openLoginMenu(){
+    if (intervalTimer != undefined){
+		window.clearInterval(intervalTimer);
+	}
     $("#signUpPage").hide();
 	$("#settingsPage").hide();
 	$("#welcomePage").hide();

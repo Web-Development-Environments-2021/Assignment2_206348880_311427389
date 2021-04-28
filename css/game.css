@@ -87,3 +87,30 @@
 h4 {
   text-decoration: underline;
 }
+
+input#un-mute {
+  display: none;
+}
+
+.unmute img {
+  display: none;
+}
+
+.mute {
+  zoom: 10%;
+}
+
+input#un-mute:checked ~ .unmute img {
+  display: initial;
+  zoom: 10%
+}
+
+input#un-mute:checked ~ .mute img {
+  display: none;
+  zoom: 10%
+}
+
+#muteBtn {
+  margin-left: 90%;
+}
+
