@@ -16,21 +16,23 @@
 
 #rightGamePage {
   width: 25%;
-  height: 2%;
   text-align: center;
   margin-right: 5%;
-  padding: 10px;
   background-color: rgb(255, 255, 143);
   border: double 10px rgb(244, 255, 185);
   border-radius: 30px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
+  zoom: 85%;
+}
+
+#gameSettings {
+  padding-top: 15px;
 }
 
 #gameInfoContainer {
   display: flex;
   justify-content: space-between;
-  /* margin: auto; */
 }
 
 .gameInfo {
@@ -102,15 +104,14 @@ input#un-mute {
 
 input#un-mute:checked ~ .unmute img {
   display: initial;
-  zoom: 10%
+  zoom: 10%;
 }
 
 input#un-mute:checked ~ .mute img {
   display: none;
-  zoom: 10%
+  zoom: 10%;
 }
 
 #muteBtn {
-  margin-left: 90%;
+  margin-left: 70%;
 }
-
