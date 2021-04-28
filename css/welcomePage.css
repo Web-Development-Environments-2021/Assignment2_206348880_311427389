@@ -3,10 +3,12 @@ header {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
+  height: 10%;
 }
 
 #appContainer {
   display: flex;
+  width: 80%;
 }
 
 #appName {
@@ -22,12 +24,16 @@ header {
 }
 
 #names {
+  position: relative;
   margin: 20px 15px 0px 0px;
+  width: 20%;
 }
 
 #welcomePage {
   background-image: url("../media/images/welcomeBG.jpg");
-  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
   width: 100%;
   position: relative;
 }
@@ -47,7 +53,6 @@ header {
   padding: 6px 24px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #9752cc;
-  /* margin: 0% 2% 0% 2%; */
   margin: 0px 10px 0px 10px;
 }
 
@@ -62,7 +67,6 @@ header {
 }
 
 #welcomeContainer {
-  /* display: flex; */
   justify-content: space-between;
   position: absolute;
   width: 100%;
