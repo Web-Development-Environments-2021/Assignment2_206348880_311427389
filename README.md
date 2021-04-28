@@ -12,7 +12,7 @@ Enjoy :heart:
 
 ## Game's functionality
 :ok_hand: Pill that appears for a certain periods of time during the game and adds life if Pacman eats it.<br />
-          If the Pacman eats the Pill it won't appear again during the game.
+          If the Pacman eats the Pill it won't appear again during the game.<br />
 :ok_hand: Clock that appears for a certain periods of time during the game and adds extra 10 seconds to game's time limit,
           if Pacman eats it.<br />
 
