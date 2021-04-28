@@ -1,4 +1,4 @@
-#Assignment2_206348880_311427389
+# Assignment2_206348880_311427389
  
 ## Names
 Gal Agasi & Tomer Kelener
@@ -7,7 +7,7 @@ Gal Agasi & Tomer Kelener
 206348880, 311427389
 
 ## Link to github.io
-You can click [here](https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/) to play Pacman-TG.
+You can click [here](https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/) to play Pacman-TG!
 Enjoy :heart:
 
 ## Info
@@ -26,4 +26,4 @@ Enjoy :heart:
 :ok_hand: Using Google Fonts instead of css defaults<br />
 
 
-[Go To Top](#Assignment2_206348880_311427389)
+[Go To Top](# Assignment2_206348880_311427389)
