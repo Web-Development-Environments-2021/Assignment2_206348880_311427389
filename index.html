@@ -167,17 +167,7 @@
       </div>
 
       <div id="settingsPage">
-        <!-- <h2>Game Settings</h2> -->
         <div id="accordion">
-          <!-- <h3>INFO</h3> -->
-          <!-- <div id="infoS">
-            On this page you can change the settings of the game instead of the
-            defaults. If you are an adventurous type, choose the random option
-            and you will be surprised to discover new settings that are randomly
-            set in each round. The game settings are divided into several
-            categories:
-            <br />
-            <br />
             <i class="fas fa-cogs"></i>
             Food Category: You can set the amount of food in the game using the
             slider bar, minimum is 50 balls and maxumum is 90 balls. Default
@@ -194,29 +184,22 @@
             <br />
             <br />
             <i class="fas fa-cogs"></i>
-            Keyboard Category: You can set the movement keyboard buttons of the
-            Pacman to any buttons that you want. Note that all selected keys
-            must be different from each other, You can't choose the same key for
-            different move directions Default values are ArrowUp for up,
-            ArrowDown for down, ArrowLeft for left and ArrowRight fir right.
-            <br />
-            <br />
+            Keyboard Category: You can set the movement keyboard buttons of the Pacman to any buttons that you want.
+            Note that all selected keys must be different from each other, You can't choose the same key for different move directions
+            Default values are ArrowUp for up, ArrowDown for down, ArrowLeft for left and ArrowRight for right.
+            <br/>
+            <br/>
             <i class="fas fa-cogs"></i>
-            Time Category: You can set the duration of the game for each round.
-            Note that the minimum time is 60 seconds, and the maximun is 9
-            minutes and 55 seconds. You can change the minutes and the seconds
-            input boxes seperatly depending on your choice. Default value is 60
-            seconds.
-            <br />
-            <br />
+            Time Category: You can set the duration of the game for each round. Note that the minimum time is 60 seconds, and the maximun is 9
+            minutes and 55 seconds. You can change the minutes and the seconds input boxes seperatly depending on your choice.
+            Default value is 60 seconds.
+            <!--br/>
+            <br/>
             <i class="fas fa-cogs"></i>
-            Sound Category: You can set the volume of the game's background
-            playback for each round using the slider bar. Note that the minimum
-            volume power is 1 and the maximun is 100. Note that you can also
-            choose the sound off checbox which will set off all the sounds in
-            the game - background playback, loosing and winning alerts. Default
-            value is sound on and 50 volume power.
-          </div> -->
+            Sound Category: You can set the volume of the game's background playback for each round using the slider bar. Note that the minimum volume power is 1 and the maximun is 100.
+            Note that you can also choose the sound off checbox which will set off all the sounds in the game - background playback, loosing and winning alerts.
+            Default value is sound on and 50 volume power. <-->
+         </div>
 
           <h3>Food</h3>
           <div id="foodSettings">
@@ -322,7 +305,7 @@
             <input type="submit" value="OK" />
           </div>
 
-          <h3>Sound</h3>
+          <!--h3>Sound</h3>
           <div id="sound">
             <p>Volume:</p>
             <input
@@ -335,14 +318,10 @@
               oninput="changeVolume()"
             />
             <p>Value: <span id="volumeValue"></span></p>
-            <input
-              type="checkbox"
-              id="soundOff"
-              name="soundOff"
-              value="Sound off"
-            />
-            <label for="soundOff">Sound Off</label><br />
-          </div>
+            <input type="checkbox" id="soundOff" name="soundOff" value="Sound off">
+            <label for="soundOff">Sound Off</label><br>
+
+          </div-->
         </div>
 
         <div id="rightPageSettings">
@@ -463,6 +442,9 @@
         <audio id="loserSound">
           <source src="media/sound/loser.mp3" type="audio/mpeg" />
         </audio>
+        <audio id="winSound">
+          <source src="media/sound/winner.mp3" type="audio/mpeg"/>
+        </audio>
         <audio id="backgroundSound">
           <source src="media/sound/background.mpeg" type="audio/mpeg" />
         </audio>
@@ -502,7 +484,7 @@
           Pacman to any buttons that you want. Note that all selected keys must
           be different from each other, You can't choose the same key for
           different move directions Default values are ArrowUp for up, ArrowDown
-          for down, ArrowLeft for left and ArrowRight fir right.
+          for down, ArrowLeft for left and ArrowRight for right.
           <br />
           <br />
           <i class="fas fa-cogs"></i>

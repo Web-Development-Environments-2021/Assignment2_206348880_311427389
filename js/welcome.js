@@ -1,6 +1,9 @@
-
 var registeredUsers = {"k":"k"};
 
+/**
+ * run when web load.
+ * add 2 rules (full name all letters, password more than 6 chars and contains letters and numbers.)
+ */
 $(document).ready(function() {
     $("#gamePage").hide();
     $("#settingsPage").hide();
@@ -18,6 +21,9 @@ $(document).ready(function() {
     validateSignUp();
 });
 
+/**
+ * show welcome page and hide the others (from menu)
+ */
 function openWelcomeMenu(){
     if (intervalTimer != undefined){
 		window.clearInterval(intervalTimer);
@@ -29,6 +35,9 @@ function openWelcomeMenu(){
     $("#welcomePage").show();
 }
 
+/**
+ * show sign up page and hide the others (from menu)
+ */
 function openSignUpMenu(){
     if (intervalTimer != undefined){
 		window.clearInterval(intervalTimer);
@@ -40,6 +49,9 @@ function openSignUpMenu(){
     $("#signUpPage").show();
 }
 
+/**
+ * show login page and hide the others (from menu)
+ */
 function openLoginMenu(){
     if (intervalTimer != undefined){
 		window.clearInterval(intervalTimer);
@@ -51,6 +63,9 @@ function openLoginMenu(){
     $("#loginPage").show();
 }
 
+/**
+ * show the about dialog
+ */
 function aboutModalDialog(){	
 	// $("#aboutContent").text(content);
     $("#aboutPage").dialog({
@@ -75,6 +90,7 @@ function aboutModalDialog(){
     });
 }
 
+
 function infoModalDialog(){	
     $("#infoDialog").dialog({
 		open: function() {
@@ -98,21 +114,39 @@ function infoModalDialog(){
     });
 }
 
-//menu
+/**
+ * open the menu
+ */
 function openNav() {
     document.getElementById("myNav").style.width = "20%";
 }
-  
+
+/**
+ * close the menu
+ */
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
 }
 
-//login functionality
+/**
+ * show login page (from welcome page)
+ */
 function showLogin(){
     $("#welcomePage").toggle();
     $("#loginPage").toggle();
 }
 
+/**
+ * show sign up page (from welcome page)
+ */
+ function toggleSignUp(){
+    $("#welcomePage").toggle();
+    $("#signUpPage").toggle();
+}
+
+/**
+ * validate the details in sign in form according to the instructions.
+ */
 function validateSignUp(){
     $("form[id='signUpForm']").validate({
         rules: {
@@ -154,7 +188,13 @@ function validateSignUp(){
         },
     });
 }
-  
+
+/**
+ * get the user name and password that the user entered and check if the user is in the users array.
+ * in addition, pop alert if one or more details are wrong.
+ * if details are valid, it change the screen to settings page.
+ * @returns false - prevent the web from falling.
+ */
 function submitLogin(){ 
     let userName = $("#loginUserName").val();
     let password = $("#loginPassword").val();
@@ -174,7 +214,10 @@ function submitLogin(){
     return false;
 }
 
-//signUp functionality
+/**
+ * get user name and password from the details that the user entered and save it in the users array.
+ * @returns false - prevent the web from falling.
+ */
 function submitSignUp(){
     let userName = $("#userName").val();
     if (!validUserName(userName)){
@@ -190,11 +233,13 @@ function submitSignUp(){
     return false;
 }
 
+/**
+ * check if the user name is unique.
+ * @param {*} userName 
+ * @returns 
+ */
 function validUserName(userName){
     return !(userName in registeredUsers);
 }
 
-function toggleSignUp(){
-    $("#welcomePage").toggle();
-    $("#signUpPage").toggle();
-}
+
