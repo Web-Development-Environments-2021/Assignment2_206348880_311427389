@@ -1,4 +1,4 @@
-#Assignment2: Pacman-TG
+#Assignment2_206348880_311427389
  
 ## Names
 Gal Agasi & Tomer Kelener
@@ -26,4 +26,4 @@ Enjoy :heart:
 :ok_hand: Using Google Fonts instead of css defaults<br />
 
 
-[Go To Top](#Assignment2: Pacman-TG)
+[Go To Top](#Assignment2_206348880_311427389)
