@@ -55,11 +55,10 @@ var winnerSound;
 
 window.addEventListener("load", setUpGame, false);
 
-
+/**
+* initalize the neccessary for the game that not depend on input.
+*/
 function setUpGame(){
-	/**
-	* initalize the neccessary for the game that not depend on input.
-	*/
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
 
@@ -82,6 +81,9 @@ function setUpGame(){
 
 }
 
+/**
+ * opens new interval of main
+ */
 function newGame(){
 	reset();
 	prepareBoard();
@@ -161,7 +163,7 @@ function movingScoreLocation(){
 
 /**
  * function to build all the items that should be on board while game.
- * in addition, getting the settings that chosen by user.
+ * in addition, getting the settings that chosen by the user.
  */
 function prepareBoard(){
 	board = new Array();
@@ -251,8 +253,12 @@ function toggleNewGameSettings(){
 	$("#gamePage").toggle();
 }
 
+/**
+ * opens model dialog and injects message according game over specific reason
+ * @param {*} title 
+ * @param {*} content 
+ */
 function dinamicModalDialog(title ,content){	
-	// inject message according game over specific reason
 	$("#modalContent").text(content);
     $("#endGameModal").dialog({
 		open: function() {

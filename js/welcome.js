@@ -67,7 +67,6 @@ function openLoginMenu(){
  * show the about dialog
  */
 function aboutModalDialog(){	
-	// $("#aboutContent").text(content);
     $("#aboutPage").dialog({
 		open: function() {
 			// click outside close
@@ -78,7 +77,7 @@ function aboutModalDialog(){
 		resizable: false,
 		height: "auto",
 		title: "About",
-		width: 800,
+		width: 600,
 		modal: true,
 		show: {effect: 'fade', duration: 250},
 		hide: { effect: "explode", duration: 1000 },

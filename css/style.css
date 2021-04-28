@@ -31,10 +31,7 @@ body {
   display: none;
 }
 
-/* //dialog */
 dialog {
-  /* background-color: var(--bg); */
-  /* color: var(--text-color); */
   text-align: center;
   border: none;
   padding: 2rem;
@@ -47,14 +44,6 @@ dialog {
 dialog[open] {
   animation: appear 0.15s cubic-bezier(0, 1.8, 1, 1.8);
 }
-
-/* dialog::backdrop {
-  background: linear-gradient(
-    45deg,
-    rgba(0, 143, 104, 0.5),
-    rgba(250, 224, 66, 0.5)
-  );
-} */
 
 dialog .actions {
   display: flex;
@@ -72,3 +61,32 @@ dialog .actions {
     transform: translateX(0);
   }
 }
+
+#namesld {
+  text-align: center;
+  background-color: black;
+  padding: 10px 10px;
+  margin-left: 20%;
+  margin-right: 20%;
+  font-size: 22px;
+  border-radius: 30px;
+  transition: all 1s ease;
+}
+
+#namesld:hover {
+  transform: scale(1.3);
+  
+}
+
+#tomer{
+  text-decoration: none;
+  margin-right: 5%;
+  color: rgb(255, 255, 143);
+
+}
+#gal{
+  text-decoration: none;
+  margin-left: 5%;
+  color: rgb(255, 255, 143);
+}
+

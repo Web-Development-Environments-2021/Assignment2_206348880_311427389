@@ -39,28 +39,13 @@
     <script type="text/javascript" src="./js/settings.js"></script>
     <script type="text/javascript" src="./js/app.js"></script>
 
-    <!-- <script src="https://kit.fontawesome.com/0e0032e592.js" crossorigin="anonymous"></script> -->
-
     <script>
       $(function () {
         $("#accordion").accordion({
           heightStyle: "content",
           collapsible: true,
-          // heightStyle: "fill",
-          // autoHeight: 'content'
         });
-        // $("#accordion").css("height","535px")
 
-        // $("#accordion-resizer").css("height","535px")
-        // $("#accordion-resizer").resizable({
-        //     minHeight: 535,
-        //     maxHeight: 535,
-        //     minWidth: 500,
-        //     maxWidth: 500,
-        //     resize: function() {
-        //       $( "#accordion" ).accordion( "refresh" );
-        //     }
-        //  });
       });
     </script>
   </head>
@@ -82,7 +67,7 @@
     <!-- menu -->
     <span id="hamburger" onclick="openNav()">&#9776;</span>
     <div id="myNav" class="overlay">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+      <a href="#" class="closebtn" onclick="closeNav()"
         >&times;</a
       >
       <div class="overlay-content">
@@ -168,38 +153,6 @@
 
       <div id="settingsPage">
         <div id="accordion">
-            <!--i class="fas fa-cogs"></i>
-            Food Category: You can set the amount of food in the game using the
-            slider bar, minimum is 50 balls and maxumum is 90 balls. Default
-            value is 70.
-            <br />
-            In addition, you can choose the color of each food type - 5 points
-            balls, 15 points balls and 25 points balls.
-            <br />
-            <br />
-            <i class="fas fa-cogs"></i>
-            Monsters Category: You can set the amount of monsters in the game
-            using the arrows inside the input box, minimum is 1 monster and
-            maxumum is 4 monsters. Default value is 1.
-            <br />
-            <br />
-            <i class="fas fa-cogs"></i>
-            Keyboard Category: You can set the movement keyboard buttons of the Pacman to any buttons that you want.
-            Note that all selected keys must be different from each other, You can't choose the same key for different move directions
-            Default values are ArrowUp for up, ArrowDown for down, ArrowLeft for left and ArrowRight for right.
-            <br/>
-            <br/>
-            <i class="fas fa-cogs"></i>
-            Time Category: You can set the duration of the game for each round. Note that the minimum time is 60 seconds, and the maximun is 9
-            minutes and 55 seconds. You can change the minutes and the seconds input boxes seperatly depending on your choice.
-            Default value is 60 seconds.<-->
-            <!--br/>
-            <br/>
-            <i class="fas fa-cogs"></i>
-            Sound Category: You can set the volume of the game's background playback for each round using the slider bar. Note that the minimum volume power is 1 and the maximun is 100.
-            Note that you can also choose the sound off checbox which will set off all the sounds in the game - background playback, loosing and winning alerts.
-            Default value is sound on and 50 volume power. <-->
-
           <h3>Food</h3>
           <div id="foodSettings">
             <p>Amount Of Food:</p>
@@ -213,15 +166,15 @@
               oninput="updateFoodAmount()"
             />
             <p>Value: <span id="foodValue"></span></p>
-
-            <p>Different Food Colors:</p>
+            <br>
+            <p>Food Colors:</p>
             <div>
               <input type="color" id="5" name="5" value="#e66465" />
               <label>5 Points Ball</label>
             </div>
 
             <div>
-              <input type="color" id="15" name="15" value="#f6b73c" />
+              <input type="color" id="15" name="15" value="#1c4fe9" />
               <label>15 Points Ball</label>
             </div>
 
@@ -242,7 +195,6 @@
               max="4"
               value="1"
             />
-            <input type="submit" value="OK" />
           </div>
 
           <h3>Keyboard</h3>
@@ -256,7 +208,6 @@
               onkeydown="setUserUp(event)"
               value="ArrowUp"
             />
-
             <label>Down:</label>
             <input
               type="text"
@@ -266,7 +217,7 @@
               onkeydown="setUserDown(event)"
               value="ArrowDown"
             />
-
+            <br>  
             <label>Left:</label>
             <input
               type="text"
@@ -276,7 +227,6 @@
               onkeydown="setUserLeft(event)"
               value="ArrowLeft"
             />
-
             <label>Right:</label>
             <input
               type="text"
@@ -301,10 +251,9 @@
               step="5"
               value="0"
             />
-            <input type="submit" value="OK" />
           </div>
 
-          <!--h3>Sound</h3>
+          <h3>Sound</h3>
           <div id="sound">
             <p>Volume:</p>
             <input
@@ -316,16 +265,15 @@
               id="soundValue"
               oninput="changeVolume()"
             />
-            <p>Value: <span id="volumeValue"></span></p>
+            <p><span id="volumeValue"></span></p>
             <input type="checkbox" id="soundOff" name="soundOff" value="Sound off">
-            <label for="soundOff">Sound Off</label><br>
-
-          </div-->
+            <label id="lblOff" for="soundOff">Sound Off</label><br>
+          </div>
         </div>
 
         <div id="rightPageSettings">
           <button class="settingButton" id="info" onclick="infoModalDialog()">
-            INFO
+            INFO&nbsp;&nbsp;<i class="fas fa-info-circle"></i>
           </button>
           <button
             class="settingButton"
@@ -341,7 +289,7 @@
           >
             Random
           </button>
-          <button id="newGame" onclick="startNewGame()">New Game</button>
+          <button class = "settingButton" id="newGame" onclick="startNewGame()">New Game&nbsp;&nbsp;<i class="fas fa-trophy"></i></button>
         </div>
       </div>
 
@@ -368,7 +316,6 @@
           <div id="canvasDiv">
             <canvas id="canvas" height="600" width="600"></canvas>
           </div>
-          <!-- <canvas id="canvas" height="600" width="600"></canvas> -->
         </div>
 
         <div id="rightGamePage" class="leftRight">
@@ -505,9 +452,15 @@
 
       <dialog>
         <div id="aboutPage">
-          <!-- <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript" ></script>
-          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="gal-agasi-188284207" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://il.linkedin.com/in/gal-agasi-188284207?trk=profile-badge">Gal Agasi</a></div>
-          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="tomer-kelner-819938210" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://il.linkedin.com/in/tomer-kelner-819938210?trk=profile-badge">Tomer Kelner</a></div> -->
+          <div id = "namesld">
+            <a id="tomer" href="https://www.linkedin.com/in/tomer-kelner-819938210/">Tomer Kelner  
+            <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a id="gal" href="https://www.linkedin.com/in/gal-agasi-188284207/">Gal Agasi  
+            <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+          <br>
           jQuery Plugin we used:
           <br />
           <br />
@@ -533,7 +486,7 @@
     </div>
 
     <footer id="footer">
-      <p id="share">You can share the game via:</p>
+      <p id="share">Share The Game Via:</p>
       <ul>
         <li>
           <a

@@ -12,11 +12,11 @@ function updateFoodAmount(){
   output.innerHTML = slider.value;
 }
 
-// function changeVolume() {
-// 	let slider = document.getElementById("soundValue");
-// 	let output = document.getElementById("volumeValue");
-// 	output.innerHTML = slider.value;
-// }
+function changeVolume() {
+	let slider = document.getElementById("soundValue");
+	let output = document.getElementById("volumeValue");
+	output.innerHTML = slider.value;
+}
 
 /**
  * set up key for the game according to user choice
@@ -98,18 +98,16 @@ function userSettings(){
 	$("#rightLbl").text("Up: "+lblright);
 
 	
-	// backgroundSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
+	backgroundSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
+	soundOff = $('#soundOff').is(':checked');
 
-	//sound
-	backgroundSound.volume = 0.4
-	soundOff = false;
-	playMusic();
-
-	// if (!soundOff) {
-	// 	playMusic();
-	// }
-	// else{
-	// }
+	if (!soundOff) {
+		document.getElementById("un-mute").checked = false;
+		playMusic();
+	}
+	else{
+		document.getElementById("un-mute").checked = true;
+	}
 
 }
 
@@ -165,7 +163,7 @@ function setDefaultSettings(){
 
 	//default food colors
 	document.getElementById("5").value = "#e66465";
-	document.getElementById("15").value = "#f6b73c";
+	document.getElementById("15").value = "#1c4fe9";
 	document.getElementById("25").value = "#d925fd";
 
 
@@ -178,8 +176,8 @@ function setDefaultSettings(){
 	document.getElementById("monstersAmount").value = 1;
 
 	//default sound
-	// document.getElementById("soundValue").value = 50;
-	// document.getElementById("volumeValue").innerHTML = 50;
+	document.getElementById("soundValue").value = 50;
+	document.getElementById("volumeValue").innerHTML = 50;
 }
 
 /**
@@ -215,7 +213,7 @@ function setRandomSettings(){
 }
 
 /**
- * it's impossible to choose one key to two different diractions, so we block it.
+ * it's impossible to choose the same key to two different diractions, so we block it.
  * @param {*} key 
  * @returns 
  */
