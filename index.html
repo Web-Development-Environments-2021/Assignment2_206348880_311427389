@@ -173,19 +173,19 @@
             <i class="fas fa-cogs"></i>
             Keyboard Category: You can set the movement keyboard buttons of the Pacman to any buttons that you want.
             Note that all selected keys must be different from each other, You can't choose the same key for different move directions
-            Default values are ArrowUp for up, ArrowDown for down, ArrowLeft for left and ArrowRight fir right.
+            Default values are ArrowUp for up, ArrowDown for down, ArrowLeft for left and ArrowRight for right.
             <br/>
             <br/>
             <i class="fas fa-cogs"></i>
             Time Category: You can set the duration of the game for each round. Note that the minimum time is 60 seconds, there is no maximun limit.
             You can change the minutes and the seconds input boxes seperatly depending on your choice.
             Default value is 60 seconds.
-            <br/>
+            <!--br/>
             <br/>
             <i class="fas fa-cogs"></i>
             Sound Category: You can set the volume of the game's background playback for each round using the slider bar. Note that the minimum volume power is 1 and the maximun is 100.
             Note that you can also choose the sound off checbox which will set off all the sounds in the game - background playback, loosing and winning alerts.
-            Default value is sound on and 50 volume power.
+            Default value is sound on and 50 volume power. <-->
 
 
           </div>
@@ -295,7 +295,7 @@
             <input type="submit" value="OK" />
           </div>
 
-          <h3>Sound</h3>
+          <!--h3>Sound</h3>
           <div id="sound">
             <p>Volume:</p>
             <input
@@ -311,7 +311,7 @@
             <input type="checkbox" id="soundOff" name="soundOff" value="Sound off">
             <label for="soundOff">Sound Off</label><br>
 
-          </div>
+          </div-->
         </div>
 
         <button
@@ -357,10 +357,10 @@
             <div id="muteBtn">
               <input type="checkbox" name="un-mute" id="un-mute">
               <label for="un-mute" class="unmute">
-              <img src="media/images/muteIcon.png" alt="Mute_Icon" onclick="muteUnmute()">
+              <img id="muteIcon" src="media/images/muteIcon.png" alt="Mute_Icon" onclick="muteUnmute()">
               </label>
               <label for="un-mute" class="mute">
-              <img src="media/images/unmuteIcon.png" alt="Speaker_Icon" onclick="muteUnmute()">
+              <img  id="unmuteIcon" src="media/images/unmuteIcon.png" alt="Speaker_Icon" onclick="muteUnmute()">
               </label>
             </div>
               <h2>Game Settings</h2>
@@ -418,6 +418,9 @@
         <img id="cure" src="media/images/cure.png" alt="cure image"/>
         <audio id="loserSound">
           <source src="media/sound/loser.mp3" type="audio/mpeg"/>
+        </audio>
+        <audio id="winSound">
+          <source src="media/sound/winner.mp3" type="audio/mpeg"/>
         </audio>
         <audio id="backgroundSound">
           <source src="media/sound/background.mpeg" type="audio/mpeg"/>

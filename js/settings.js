@@ -1,23 +1,27 @@
-
 var lblup = "ArrowUp";
 var lbldown = "ArrowDown";
 var lblright = "ArrowRight";
 var lblleft = "ArrowLeft";
 
-// food settings
-// Update the current slider value (each time you drag the slider handle)
+/**
+ * change the amount of food according to the slider
+ */
 function updateFoodAmount(){
   let slider = document.getElementById("foodAmount");
   let output = document.getElementById("foodValue");
   output.innerHTML = slider.value;
 }
 
-function changeVolume() {
-	let slider = document.getElementById("soundValue");
-	let output = document.getElementById("volumeValue");
-	output.innerHTML = slider.value;
-}
+// function changeVolume() {
+// 	let slider = document.getElementById("soundValue");
+// 	let output = document.getElementById("volumeValue");
+// 	output.innerHTML = slider.value;
+// }
 
+/**
+ * set up key for the game according to user choice
+ * @param {*} upEvent 
+ */
 function setUserUp(upEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		up = upEvent.keyCode;
@@ -25,7 +29,11 @@ function setUserUp(upEvent) {
 		document.getElementById("up").value = upEvent.key;
 	}
 }
-  
+
+/**
+ * set down key for the game according to user choice
+ * @param {*} downEvent 
+ */
 function setUserDown(downEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		down = downEvent.keyCode;
@@ -34,6 +42,10 @@ function setUserDown(downEvent) {
 	}
 }  
 
+/**
+ * set left key for the game according to user choice
+ * @param {*} leftEvent 
+ */
 function setUserLeft(leftEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		left = leftEvent.keyCode;
@@ -42,6 +54,10 @@ function setUserLeft(leftEvent) {
 	}
 } 
 
+/**
+ * set right key for the game according to user choice
+ * @param {*} rightEvent 
+ */
 function setUserRight(rightEvent) {
 	if(checkValidKey(upEvent.keyCode)){
 		right = rightEvent.keyCode;
@@ -51,6 +67,9 @@ function setUserRight(rightEvent) {
 
 } 
 
+/**
+ * collect all the settings that the user set to the game.
+ */
 function userSettings(){
 	//Food user inputs
 	ballsCount = document.getElementById("foodAmount").value;
@@ -78,31 +97,49 @@ function userSettings(){
 	$("#leftLbl").text("Left: "+lblleft);
 	$("#rightLbl").text("Up: "+lblright);
 
-	//volume
-	backgroundSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
+	
+	// backgroundSound.volume = parseInt(document.getElementById("soundValue").value)/ 100;
 
-	soundOff = $('#soundOff').is(':checked')
-	if (!soundOff) {
-		playMusic();
-	}
+	//sound
+	backgroundSound.volume = 0.4
+	soundOff = false;
+	playMusic();
+
+	// if (!soundOff) {
+	// 	playMusic();
+	// }
+	// else{
+	// }
+
 }
 
+/**
+ * turn the music on
+ */
 function playMusic() {
 	backgroundSound.muted = false;
 	backgroundSound.play();
 	backgroundSound.loop = true;
 }
 
+/**
+ * turn the musis on/off whan user push the button on game page
+ */
 function muteUnmute(){
 	let soundOn = $('#un-mute').is(':checked')
 	if (soundOn) {
+		soundOff = false;
 		playMusic();
 	}
 	else{
+		soundOff = true;
 		backgroundSound.muted = true;
 	}
 }
 
+/**
+ * set default keys to play with.
+ */
 function setDefaultKeyboard(){
 	up = 38;
 	document.getElementById("up").value = "ArrowUp"
@@ -115,6 +152,9 @@ function setDefaultKeyboard(){
 
 }
 
+/**
+ * set default settings to game
+ */
 function setDefaultSettings(){
 	//default keyboard
 	setDefaultKeyboard();
@@ -138,10 +178,13 @@ function setDefaultSettings(){
 	document.getElementById("monstersAmount").value = 1;
 
 	//default sound
-	document.getElementById("soundValue").value = 50;
-	document.getElementById("volumeValue").innerHTML = 50;
+	// document.getElementById("soundValue").value = 50;
+	// document.getElementById("volumeValue").innerHTML = 50;
 }
 
+/**
+ * set random settings to game
+ */
 function setRandomSettings(){
 	//Random keyboard
 	setDefaultKeyboard();
@@ -159,9 +202,7 @@ function setRandomSettings(){
 	let randomColor25 = '#'+Math.floor(Math.random()*16777215).toString(16);
 	document.getElementById("25").value = randomColor25;
 
-
 	//Random time
-	// max time for game???
 	let randomMinutes =  Math.floor(Math.random() * 5) + 1;
 	document.getElementById("minutes").value = randomMinutes;
 	let randomSeconds =  Math.floor(Math.random() * 12) * 5;
@@ -173,6 +214,11 @@ function setRandomSettings(){
 	document.getElementById("monstersAmount").value = randomMonstersAmount;
 }
 
+/**
+ * it's impossible to choose one key to two different diractions, so we block it.
+ * @param {*} key 
+ * @returns 
+ */
 function checkValidKey(key){
 	if (key == up || key == down || key == right || key == left){
 		return false;

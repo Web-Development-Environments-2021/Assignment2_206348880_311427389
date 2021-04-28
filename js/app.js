@@ -50,6 +50,7 @@ var right;
 var soundOff;
 var loserSound;
 var backgroundSound;
+var winnerSound;
 
 
 window.addEventListener("load", setUpGame, false);
@@ -65,6 +66,7 @@ function setUpGame(){
 	//sounds during game
 	loserSound = document.getElementById("loserSound");
 	backgroundSound = document.getElementById("backgroundSound");
+	winnerSound = document.getElementById("winSound");
 
 	//images during game
 	movingScoreImage = document.getElementById("movingScore");
@@ -87,11 +89,10 @@ function newGame(){
 	intervalTimer = setInterval(main, 150);
 }
 
-
+/**
+* after the game ends, we reset the variables that change during game.
+*/
 function reset(){
-	/**
-	* after the game ended, we reset the variables that change during game.
-	*/
 	isMovingEaten = false;
 	isClockEaten = false;
 	isPillEaten = false;
@@ -107,11 +108,10 @@ function reset(){
 		window.clearInterval(intervalTimer);
 	}
 }
-
+/**
+* locate the monsters in the corners of the canves when game start/after losing life. 
+*/
 function monstersLocations(){
-	/**
-	 * locate the monsters in the corners of the canves when game start/after losing life. 
-	 */
 	for(let i = 0; i < numOfMonsters; i++){
 		if (i == 0){
 			monsters[0].i = 0;
@@ -136,12 +136,11 @@ function monstersLocations(){
 		}
 	}
 }
-
+/**
+* locate the pacman randomaly on empty cell on the canvas.
+* if shape.i/j is not undefined, remove the pacman from shape.i/j and locate him in a new cell.
+*/
 function randomLocatePacman(){
-	/**
-	 * locate the pacman randomaly on empty cell on the canvas.
-	 * if shape.i/j is not undefined, remove the pacman from shape.i/j and locate in a new cell.
-	 */
 	if (shape.i != undefined && shape.j != undefined){
 		board[shape.i][shape.j] = 0;
 	}
@@ -152,11 +151,18 @@ function randomLocatePacman(){
 	shape.j = pacmanCell[1];
 }
 
+/**
+ * location of the special score.
+ */
 function movingScoreLocation(){
 	movingScore.i = 5;
 	movingScore.j = 4;
 }
 
+/**
+ * function to build all the items that should be on board while game.
+ * in addition, getting the settings that chosen by user.
+ */
 function prepareBoard(){
 	board = new Array();
 
@@ -180,12 +186,9 @@ function prepareBoard(){
 		counter5 += diff;
 	}
 
-	// monsters
+	// initialize walls, monsters and moving score locations.
 	monstersLocations();
-
-	// moving score sponge?
 	movingScoreLocation()
-
 	initWalls();
 	
 	//25 point food
@@ -209,12 +212,14 @@ function prepareBoard(){
 		counter5--;
 	}
 
-
 	// pacman's random location
 	randomLocatePacman();
 
 }
 
+/**
+ * set to walls of the game.
+ */
 function initWalls(){
 	board[2][3] = 1;
 	board[2][4] = 1;
@@ -226,6 +231,9 @@ function initWalls(){
 	board[7][4] = 1;
 }
 
+/**
+ * close the game interval and change the screen to settings.
+ */
 function anotherRound(){
 	if (!backgroundSound.paused){
 		backgroundSound.pause();
@@ -235,6 +243,9 @@ function anotherRound(){
 	toggleNewGameSettings();
 }
 
+/**
+ * replace the screen from settings to game or the opposite. 
+ */
 function toggleNewGameSettings(){
 	$("#settingsPage").toggle();
 	$("#gamePage").toggle();
@@ -265,6 +276,10 @@ function dinamicModalDialog(title ,content){
   	});
 }
 
+/**
+ * handle the all situations that the game ends.
+ * @param {* what was the resaon to the game to end} reason 
+ */
 function endGame(reason){
 	Draw();
 	backgroundSound.pause();
@@ -277,17 +292,29 @@ function endGame(reason){
 		dinamicModalDialog("GAME OVER!", "Loser! Just a few rounds and you will be better...");
 	}
 	else if (reason == "time" && score < 100){
+		if (!soundOff) {
+			winnerSound.play();
+		}
 		let message = "You are better than " + score + " points!";
 		dinamicModalDialog("GAME OVER!", message);
 	}
 	else if (reason == "time" && score >= 100){
+		if (!soundOff) {
+			winnerSound.play();
+		}
 		dinamicModalDialog("GAME OVER!", "Winner!!!");
 	}
 	else if(reason == "food"){
+		if (!soundOff) {
+			winnerSound.play();
+		}
 		dinamicModalDialog("GAME OVER!", "You are the best!!!");
 	}
 }
 
+/**
+ * after pushing the start new game button in settings, the function change to game screen and start game.
+ */
 function startNewGame(){
 	toggleNewGameSettings();
 	newGame();
@@ -300,6 +327,9 @@ function main(){
 	detectCollisions();
 }
 
+/**
+ * chack if the time that the user set to the game passed.
+ */
 function checkTimeLimit(){
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
@@ -308,6 +338,9 @@ function checkTimeLimit(){
 	}
 }
 
+/**
+ * send to functions that check if the pacman hit other character
+ */
 function detectCollisions(){
 	detectMonstersCollisions();
 	detectMovingScoreCollisions();
@@ -318,6 +351,9 @@ function detectCollisions(){
 	}
 }
 
+/**
+ * chack if the pacman and the moving score image are in the same cell.
+ */
 function detectMovingScoreCollisions(){
 	if (isMovingEaten == false){
 		let colsDist = Math.abs(shape.i - movingScore.i);
@@ -326,12 +362,13 @@ function detectMovingScoreCollisions(){
 		if (colsDist < 1 && rowsDist < 1){
 			score += 50;
 			isMovingEaten = true;
-			//check
-			//need add sound
 		}
 	}
 }
 
+/**
+ * chack if the pacman and the monster image are in the same cell.
+ */
 function detectMonstersCollisions(){
 	for (var i = 0; i < numOfMonsters; i++){
 
@@ -341,7 +378,6 @@ function detectMonstersCollisions(){
 		if (colsDist < 1 && rowsDist < 1){
 			life--;
 			score -= 10;
-			//need add sound
 			if (life > 0){
 				randomLocatePacman();
 				monstersLocations();
@@ -349,7 +385,6 @@ function detectMonstersCollisions(){
 					movingScoreLocation();
 				}
 			}
-			//need to add pop window with summary og score
 			else{
 				endGame("life");
 			}
@@ -357,6 +392,9 @@ function detectMonstersCollisions(){
 	}
 }
 
+/**
+ * chack if the pacman and the clock image are in the same cell.
+ */
 function detectClockCollisions(){
 	if (isClockEaten == false && clockCell != undefined){
 		let colsDist = Math.abs(shape.i - clockCell[0]);
@@ -366,12 +404,13 @@ function detectClockCollisions(){
 		if (colsDist < 1 && rowsDist < 1){
 			timeLimit += 10;
 			isClockEaten= true;
-			//check
-			//need add sound
 		}
 	}
 }
 
+/**
+ * chack if the pacman and the pill image are in the same cell.
+ */
 function detectPillCollisions(){
 	if(isPillEaten == false && pillCell != undefined){
 		let colsDist = Math.abs(shape.i - pillCell[0]);
@@ -380,11 +419,13 @@ function detectPillCollisions(){
 		if (colsDist < 1 && rowsDist < 1){
 			life++;
 			isPillEaten = true;
-			//need add sound
 		}
 	}
 }
 
+/**
+ * find empty cell in the grid
+ */
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 10);
 	var j = Math.floor(Math.random() * 10);
@@ -395,50 +436,49 @@ function findRandomEmptyCell(board) {
 	return [i, j];
 }
 
+/**
+ * get the key that the user pressed on
+ * @returns the key that pressed
+ */
 function GetKeyPressed() {
-	//up
 	if (keysDown[up]) {
 		return 1;
 	}
-	//down
 	if (keysDown[down]) {
 		return 2;
 	}
-	//left
 	if (keysDown[left]) {
 		return 3;
 	}
-	//right
 	if (keysDown[right]) {
 		return 4;
 	}
 }
 
+/**
+ * update the positions of pacman, monsters and moving score.
+ */
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
-	//up
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 1) {
 			shape.j--;
 			dirPacman = "up";
 		}
 	}
-	//down
 	if (x == 2) {
 		if (shape.j < 9 && board[shape.i][shape.j + 1] != 1) {
 			shape.j++;
 			dirPacman = "down";
 		}
 	}
-	//left
 	if (x == 3) {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != 1) {
 			shape.i--;
 			dirPacman = "left";
 		}
 	}
-	//right
 	if (x == 4) {
 		if (shape.i < 9 && board[shape.i + 1][shape.j] != 1) {
 			shape.i++;
@@ -461,7 +501,7 @@ function UpdatePosition() {
 
 	board[shape.i][shape.j] = 2;
 
-	//slower movement of monsters and movingScore
+	//make the movement of monsters and movingScore slower
 	if (moveIterator % 5 == 0){
 		updateMonstersPosition();
 		updateMovingScorePosition();
@@ -469,7 +509,10 @@ function UpdatePosition() {
 	++moveIterator;
 }
 
-// need to fix
+/**
+ * update the position of the monsters wisely.
+ * in odds 1 to 6 the monster will move randomaly.
+ */
 function updateMonstersPosition(){
 	for (var i = 0; i < numOfMonsters; i++){
 		let prob = Math.random() * 6;
@@ -507,6 +550,10 @@ function updateMonstersPosition(){
 
 }
 
+/**
+ * make the monster move to a random diraction.
+ * @param {*} monster 
+ */
 function monsterMoveRandomly(monster){
 	let move = false;
 	while(!move){
@@ -547,6 +594,9 @@ function moveMonsterDown(monster){
 	monster.j++;
 }
 
+/**
+ * update the position of the moving score randomly.
+ */
 function updateMovingScorePosition(){
 	let direction =  Math.floor(Math.random() * 4);
 	let xPosition = movingScore.i;
@@ -573,6 +623,9 @@ function updateMovingScorePosition(){
 	}
 }
 
+/**
+ * draw the canvas and all the things that the game need to be good
+ */
 function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
@@ -598,7 +651,6 @@ function Draw() {
 				else if (dirPacman == "left"){
 					drawDirectedPacman(1.15, 0.85, center.x, center.y, -5, -15);
 				}
-
 				else {
 					drawDirectedPacman(0.15, 1.85, center.x, center.y, 5, -15);
 				}
@@ -632,6 +684,7 @@ function Draw() {
 		}
 	}
 
+	// the clock appear to few moments and than disappear
 	if (clockIterator % 13 > 11 && isClockEaten == false){
 		drawClock();
 	}
@@ -643,11 +696,14 @@ function Draw() {
 	}
 	clockIterator += 0.1;
 
+	// the pill appear to few moments and than disappear.
+	// if the pacman eat the pill, there will be no more pills
 	if (pillIterator % 15 > 12 && isPillEaten == false){
 		drawPill();
 	}
 	pillIterator += 0.1;
 }
+
 
 function drawClock(){
 	if (clockCell == undefined){
@@ -663,6 +719,15 @@ function drawPill(){
 	context.drawImage(pillImage, pillCell[0]*60, pillCell[1]*60, 60, 60);
 }
 
+/**
+ * draw the pacman in the diraction of he's movement
+ * @param {*start draw from this angle} startAngle 
+ * @param {*end draw in this angle} endAngle 
+ * @param {*the center of cell - width} xCenter 
+ * @param {*the center of cell - height} yCenter 
+ * @param {*the distance from middle to draw the eye - width} xDist 
+ * @param {*the distance from middle to draw the eye - height} yDist 
+ */
 function drawDirectedPacman(startAngle, endAngle, xCenter, yCenter, xDist, yDist){
 	context.beginPath();
 	context.arc(xCenter, yCenter, 30, startAngle * Math.PI, endAngle * Math.PI); // half circle
