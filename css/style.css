@@ -1,7 +1,15 @@
+*,
+html {
+  margin: 0;
+}
+
 body {
   font-family: "Exo";
-  /* width: 97vw; */
   height: 100vh;
+}
+
+#content {
+  height: 82%;
 }
 
 .monsters {

@@ -1,48 +1,64 @@
 footer {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    background-color:  rgb(255, 255, 143);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 143);
+  height: 8%;
+}
+
+#share {
+  float: left;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#contact {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-right: 10px;
+  float: right;
 }
 
 ul {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  float: left;
+  padding-left: 10px;
+  margin-top: 5px;
 }
 
 ul li {
-    display: inline-block;
-    padding: 10px 10px;
-    cursor: pointer;
-    transition: all 1s ease;
+  display: inline-block;
+  padding-left: 10px;
+  cursor: pointer;
+  transition: all 1s ease;
 }
 
-ul li a{
-    font-size: 25px;
+ul li a {
+  font-size: 25px;
 }
 
 ul li:hover {
-    background-color: black;
-    transform: scale(1.2);
+  background-color: black;
+  transform: scale(1.2);
 }
 
-ul li:hover a{
-    color: white;
+ul li:hover a {
+  color: white;
 }
 
-.fa-facebook{
-    color: #3b5998;
+.fa-facebook {
+  color: #3b5998;
 }
 
-.fa-linkedin-in{
-    color: #0077b5;
+.fa-linkedin-in {
+  color: #0077b5;
 }
 
-#footer{
-    text-align: center;
+#footer {
+  text-align: center;
 }
 
-.mailus{
-    text-decoration: none;
-    color: black;
+.mailus {
+  text-decoration: none;
+  color: black;
 }

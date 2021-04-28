@@ -1,32 +1,37 @@
 #signUpPage,
 #loginPage {
   background-image: url("../media/images/welcomeBG.jpg");
-  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
   width: 100%;
-  /* position: relative; */
   display: none;
 }
 
 #loginForm {
-  position: absolute;
   margin: 10% 35% 10% 35%;
 }
 
+#signUpForm {
+  margin: 2.5% 35%;
+}
+
 form {
+  position: absolute;
   width: 30%;
-  padding: 20px;
+  padding: 15px;
   text-align: left;
-  margin: auto;
   background-color: rgb(255, 255, 143);
   border: double 10px rgb(244, 255, 185);
   border-radius: 30px;
+  zoom: 80%;
 }
 
 .text,
 input[type="password"],
 textarea {
   width: 100%;
-  margin: 10px 0px 20px 0px;
+  margin-bottom: 15px;
   border-radius: 10px;
   border: 2px solid rgb(255, 255, 255);
   background-color: rgb(244, 255, 185);
@@ -40,7 +45,8 @@ textarea {
 #submit,
 #loginbtn {
   border-radius: 15px;
-  padding: 13px 30px;
+  padding: 7px 30px;
+  /* margin-top: 10px; */
   border: 5px solid white;
   cursor: pointer;
   margin: 0 auto;
