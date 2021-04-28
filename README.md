@@ -1,7 +1,7 @@
 # Assignment2_206348880_311427389
  
 ## Names
-Gal Agasi & Tomer Kelener
+Gal Agasi & Tomer Kelner
 
 ## ID's
 206348880, 311427389
