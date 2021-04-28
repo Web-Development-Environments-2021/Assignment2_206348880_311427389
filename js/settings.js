@@ -88,8 +88,19 @@ function userSettings(){
 }
 
 function playMusic() {
+	backgroundSound.muted = false;
 	backgroundSound.play();
 	backgroundSound.loop = true;
+}
+
+function muteUnmute(){
+	let soundOn = $('#un-mute').is(':checked')
+	if (soundOn) {
+		playMusic();
+	}
+	else{
+		backgroundSound.muted = true;
+	}
 }
 
 function setDefaultKeyboard(){

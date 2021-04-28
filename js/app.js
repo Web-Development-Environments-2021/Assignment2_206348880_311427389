@@ -8,29 +8,29 @@ var start_time;
 var time_elapsed;
 var intervalTimer;
 var currLogged;
+var endGameModal;
 
-
+var timeLimit;
 var life;
-var pillImage;
-var pillCell;
-var pillIterator;
-
+var keysDown;
+var dirPacman;
 var monsters;
 var numOfMonsters;
 var monsterImage;
 var moveIterator;
-//need to add 4 monsters images
 var movingScoreImage;
 var movingScore = new Object();
 var isMovingEaten;
 
+//variables for functionality
 var clockImage;
 var clockCell;
 var isClockEaten;
 var clockIterator;
+var pillImage;
+var pillCell;
+var pillIterator;
 
-var keysDown;
-var dirPacman;
 // user inputs for settings
 var ballsCount;
 var counter5;
@@ -39,8 +39,6 @@ var counter25;
 var color5;
 var color15;
 var color25;
-
-var timeLimit;
 
 //variables for movment from user
 var up;
@@ -53,29 +51,27 @@ var soundOff;
 var loserSound;
 var backgroundSound;
 
-var endGameModal;
-
 
 window.addEventListener("load", setUpGame, false);
 
+
 function setUpGame(){
+	/**
+	* initalize the neccessary for the game that not depend on input.
+	*/
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");
-	// add backgorund
 
-	// add music
+	//sounds during game
 	loserSound = document.getElementById("loserSound");
 	backgroundSound = document.getElementById("backgroundSound");
 
-
-	// add images
+	//images during game
 	movingScoreImage = document.getElementById("movingScore");
 	clockImage = document.getElementById("clock");
 	pillImage = document.getElementById("cure");
 
-	
 	keysDown = {};
-
 
 	addEventListener("keydown", function (e) {keysDown[e.keyCode] = true;}, false);
 	addEventListener("keyup", function (e) {delete keysDown[e.keyCode];}, false);
@@ -85,7 +81,6 @@ function setUpGame(){
 }
 
 function newGame(){
-	// decide where to put settings
 	reset();
 	prepareBoard();
 	start_time = new Date();
@@ -93,8 +88,10 @@ function newGame(){
 }
 
 
-// need to add settings inside
 function reset(){
+	/**
+	* after the game ended, we reset the variables that change during game.
+	*/
 	isMovingEaten = false;
 	isClockEaten = false;
 	isPillEaten = false;
@@ -109,11 +106,12 @@ function reset(){
 	if (intervalTimer != undefined){
 		window.clearInterval(intervalTimer);
 	}
-	//settings
-	//move to settings
 }
 
 function monstersLocations(){
+	/**
+	 * locate the monsters in the corners of the canves when game start/after losing life. 
+	 */
 	for(let i = 0; i < numOfMonsters; i++){
 		if (i == 0){
 			monsters[0].i = 0;
@@ -140,6 +138,10 @@ function monstersLocations(){
 }
 
 function randomLocatePacman(){
+	/**
+	 * locate the pacman randomaly on empty cell on the canvas.
+	 * if shape.i/j is not undefined, remove the pacman from shape.i/j and locate in a new cell.
+	 */
 	if (shape.i != undefined && shape.j != undefined){
 		board[shape.i][shape.j] = 0;
 	}
