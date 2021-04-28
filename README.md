@@ -12,7 +12,7 @@ Enjoy :heart:
 
 ## Info
 :ok_hand: App Structure according to instructions - Header, Content with switching divs, footer<br />
-:ok_hand: Fixed Hhamburger menu with hover effects<br />
+:ok_hand: Fixed Hamburger menu with hover effects<br />
 :ok_hand: Modal Dialog windows - About, Game's messages<br />
 :ok_hand: Using jQuery validator - Sign Up form<br />
 :ok_hand: Using jQuery Accordion plugin for Settings Page<br />
