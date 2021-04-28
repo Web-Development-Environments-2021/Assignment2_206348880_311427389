@@ -6,6 +6,9 @@ var registeredUsers = {"k":"k"};
  */
 $(document).ready(function() {
     $("#gamePage").hide();
+    $("#settingsPage").hide();
+    $("#loginPage").hide();
+	$("#signUpPage").hide();
     openNav();
     $.validator.addMethod("allLettersRule", function(value) {
         return /^[A-Za-z]+$/.test(value);
@@ -75,6 +78,30 @@ function aboutModalDialog(){
 		resizable: false,
 		height: "auto",
 		title: "About",
+		width: 800,
+		modal: true,
+		show: {effect: 'fade', duration: 250},
+		hide: { effect: "explode", duration: 1000 },
+		buttons: {
+		Close: function() {
+			$( this ).dialog( "close" );
+		}
+	}
+    });
+}
+
+
+function infoModalDialog(){	
+    $("#infoDialog").dialog({
+		open: function() {
+			// click outside close
+			$('.ui-widget-overlay').bind('click', function(){
+				$("#infoDialog").dialog('close');
+			})
+			},
+		resizable: false,
+		height: "auto",
+		title: "INFO",
 		width: 800,
 		modal: true,
 		show: {effect: 'fade', duration: 250},

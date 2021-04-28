@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>Pacman-TG</title>
-    <link rel="icon" href="media/images/iconTitle.png" type="image/icon type"/>
+    <link rel="icon" href="media/images/iconTitle.png" type="image/icon type" />
     <script src="./jquery-3.4.1.slim.min.js"></script>
 
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/signUp.css">
-    <link rel="stylesheet" href="css/welcomePage.css">
-    <link rel="stylesheet" href="css/settings.css">
-    <link rel="stylesheet" href="css/game.css">
-    <link rel="stylesheet" href="css/footer.css"/>
+    <link rel="stylesheet" href="css/signUp.css" />
+    <link rel="stylesheet" href="css/welcomePage.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/footer.css" />
 
     <!--Google's fonts-->
     <link
@@ -24,13 +24,16 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--Icons-->
     <script
-    src="https://kit.fontawesome.com/e211f6a94b.js"
-    crossorigin="anonymous"
-  ></script>
+      src="https://kit.fontawesome.com/e211f6a94b.js"
+      crossorigin="anonymous"
+    ></script>
     <!--link rel="stylesheet" href="/resources/demos/style.css" /-->
     <script type="text/javascript" src="./js/welcome.js"></script>
     <script type="text/javascript" src="./js/settings.js"></script>
@@ -43,7 +46,21 @@
         $("#accordion").accordion({
           heightStyle: "content",
           collapsible: true,
+          // heightStyle: "fill",
+          // autoHeight: 'content'
         });
+        // $("#accordion").css("height","535px")
+
+        // $("#accordion-resizer").css("height","535px")
+        // $("#accordion-resizer").resizable({
+        //     minHeight: 535,
+        //     maxHeight: 535,
+        //     minWidth: 500,
+        //     maxWidth: 500,
+        //     resize: function() {
+        //       $( "#accordion" ).accordion( "refresh" );
+        //     }
+        //  });
       });
     </script>
   </head>
@@ -51,20 +68,23 @@
   <body>
     <header>
       <div id="appContainer">
-        <img id="logo" class="appD" src="media/images/logo.jpg" alt="logo pic">
-        <div id="appName" class="appD">
-          Pacman-TG
-        </div>
+        <img
+          id="logo"
+          class="appD"
+          src="media/images/logo.jpg"
+          alt="logo pic"
+        />
+        <div id="appName" class="appD">Pacman-TG</div>
       </div>
-      <div id="names">
-        Tomer Kelner&nbsp;&&nbsp;Gal Agasi
-      </div>
+      <div id="names">Tomer Kelner&nbsp;&&nbsp;Gal Agasi</div>
     </header>
 
     <!-- menu -->
     <span id="hamburger" onclick="openNav()">&#9776;</span>
     <div id="myNav" class="overlay">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
       <div class="overlay-content">
         <a href="#" onclick="openWelcomeMenu()">Welcome</a>
         <a href="#" onclick="openSignUpMenu()">Sign Up</a>
@@ -95,27 +115,27 @@
         >
           <i class="fas fa-user-circle"></i>
           <label>User Name:</label>
-          <input type="text" id="userName" name="userName" class="text"/>
-          <br>
+          <input type="text" id="userName" name="userName" class="text" />
+          <br />
 
           <i class="fas fa-ghost"></i>
           <label>Password:</label>
-          <input type="password" id="password" name="password"/>
-          <br>
+          <input type="password" id="password" name="password" />
+          <br />
 
           <i class="fas fa-user-alt"></i>
           <label>Full Name:</label>
-          <input type="text" id="fullName" name="fullName" class="text"/>
-          <br>
+          <input type="text" id="fullName" name="fullName" class="text" />
+          <br />
 
           <i class="fa fa-envelope icon"></i>
           <label>E-Mail:</label>
-          <input type="text" id="email" name="email" class="text"/>
-          <br>
+          <input type="text" id="email" name="email" class="text" />
+          <br />
 
           <i class="fas fa-birthday-cake"></i>
           <label>Birth Date:</label>
-          <input type="text" id="datepicker" name="birthday" class="text"/>
+          <input type="text" id="datepicker" name="birthday" class="text" />
           <script>
             $(function () {
               $("#datepicker").datepicker();
@@ -123,7 +143,6 @@
           </script>
 
           <input type="submit" name="" id="submit" value="submit 👌" />
-
         </form>
       </div>
 
@@ -137,7 +156,7 @@
         >
           <i class="fas fa-user-circle"></i>
           <label>User Name:</label>
-          <input type="text" id="loginUserName" class="text"/>
+          <input type="text" id="loginUserName" class="text" />
 
           <i class="fas fa-ghost"></i>
           <label>Password:</label>
@@ -148,28 +167,22 @@
       </div>
 
       <div id="settingsPage">
-        <h2>Game Settings</h2>
-
         <div id="accordion">
-          <h3>INFO</h3>
-          <div>
-            On this page you can change the settings of the game instead of the defaults.
-            If you are an adventurous type, choose the random option and you will be surprised to discover new settings that are randomly set in each round.
-            The game settings are divided into several categories: 
-            <br/>
-            <br/>
             <i class="fas fa-cogs"></i>
-            Food Category: You can set the amount of food in the game using the slider bar, minimum is 50 balls and maxumum is 90 balls.
-            Default value is 70.
-            <br/>
-            In addition, you can choose the color of each food type - 5 points balls, 15 points balls and 25 points balls.
-            <br/>
-            <br/>
+            Food Category: You can set the amount of food in the game using the
+            slider bar, minimum is 50 balls and maxumum is 90 balls. Default
+            value is 70.
+            <br />
+            In addition, you can choose the color of each food type - 5 points
+            balls, 15 points balls and 25 points balls.
+            <br />
+            <br />
             <i class="fas fa-cogs"></i>
-            Monsters Category: You can set the amount of monsters in the game using the arrows inside the input box, minimum is 1 monster and maxumum is 4 monsters.
-            Default value is 1.
-            <br/>
-            <br/>
+            Monsters Category: You can set the amount of monsters in the game
+            using the arrows inside the input box, minimum is 1 monster and
+            maxumum is 4 monsters. Default value is 1.
+            <br />
+            <br />
             <i class="fas fa-cogs"></i>
             Keyboard Category: You can set the movement keyboard buttons of the Pacman to any buttons that you want.
             Note that all selected keys must be different from each other, You can't choose the same key for different move directions
@@ -177,8 +190,8 @@
             <br/>
             <br/>
             <i class="fas fa-cogs"></i>
-            Time Category: You can set the duration of the game for each round. Note that the minimum time is 60 seconds, there is no maximun limit.
-            You can change the minutes and the seconds input boxes seperatly depending on your choice.
+            Time Category: You can set the duration of the game for each round. Note that the minimum time is 60 seconds, and the maximun is 9
+            minutes and 55 seconds. You can change the minutes and the seconds input boxes seperatly depending on your choice.
             Default value is 60 seconds.
             <!--br/>
             <br/>
@@ -186,9 +199,7 @@
             Sound Category: You can set the volume of the game's background playback for each round using the slider bar. Note that the minimum volume power is 1 and the maximun is 100.
             Note that you can also choose the sound off checbox which will set off all the sounds in the game - background playback, loosing and winning alerts.
             Default value is sound on and 50 volume power. <-->
-
-
-          </div>
+         </div>
 
           <h3>Food</h3>
           <div id="foodSettings">
@@ -278,11 +289,10 @@
             />
           </div>
 
-          <!-- check time limits -->
           <h3>Time</h3>
           <div>
             <label>Minutes:</label>
-            <input type="number" id="minutes" min="1" value="1" />
+            <input type="number" id="minutes" min="1" max="9" value="1" />
             <label>Seconds:</label>
             <input
               type="number"
@@ -314,75 +324,88 @@
           </div-->
         </div>
 
-        <button
-          class="settingButton"
-          id="default"
-          onclick="setDefaultSettings()"
-        >
-          Default
-        </button>
-        <button class="settingButton" id="random" onclick="setRandomSettings()">
-          Random
-        </button>
-        <br />
-        <button id="newGame" onclick="startNewGame()">New Game</button>
+        <div id="rightPageSettings">
+          <button class="settingButton" id="info" onclick="infoModalDialog()">
+            INFO
+          </button>
+          <button
+            class="settingButton"
+            id="default"
+            onclick="setDefaultSettings()"
+          >
+            Default
+          </button>
+          <button
+            class="settingButton"
+            id="random"
+            onclick="setRandomSettings()"
+          >
+            Random
+          </button>
+          <button id="newGame" onclick="startNewGame()">New Game</button>
+        </div>
       </div>
 
       <div id="gamePage">
-        <div id="leftGamePage" class="leftRight"> 
+        <div id="leftGamePage" class="leftRight">
           <div id="gameInfoContainer">
             <div id="user" class="gameInfo">
               <label for="lblUser">USER NAME:</label>
-              <input id="lblUser" type="text" class="gameLbl"/>
-            </div> 
+              <input id="lblUser" type="text" class="gameLbl" />
+            </div>
             <div id="score" class="gameInfo">
               <label for="lblScore">SCORE:</label>
-              <input id="lblScore" type="text" class="gameLbl"/>
+              <input id="lblScore" type="text" class="gameLbl" />
             </div>
             <div id="time" class="gameInfo">
               <label for="lblTime">TIME REMAIN:</label>
-              <input id="lblTime" type="text" class="gameLbl"/>
+              <input id="lblTime" type="text" class="gameLbl" />
             </div>
             <div id="life" class="gameInfo">
               <label for="lblLife">LIFE:</label>
-              <input id="lblLife" type="text" class="gameLbl"/>
-            </div> 
+              <input id="lblLife" type="text" class="gameLbl" />
+            </div>
           </div>
-
-          <canvas id="canvas" height="600" width="600"></canvas>
+          <div id="canvasDiv">
+            <canvas id="canvas" height="600" width="600"></canvas>
+          </div>
+          <!-- <canvas id="canvas" height="600" width="600"></canvas> -->
         </div>
 
         <div id="rightGamePage" class="leftRight">
-          <div id="gameSettings">
-            <div id="muteBtn">
-              <input type="checkbox" name="un-mute" id="un-mute">
-              <label for="un-mute" class="unmute">
-              <img id="muteIcon" src="media/images/muteIcon.png" alt="Mute_Icon" onclick="muteUnmute()">
-              </label>
-              <label for="un-mute" class="mute">
-              <img  id="unmuteIcon" src="media/images/unmuteIcon.png" alt="Speaker_Icon" onclick="muteUnmute()">
-              </label>
-            </div>
+          <div id="rightContainerGame">
+            <div id="gameSettings">
+              <div id="muteBtn">
+                <input type="checkbox" name="un-mute" id="un-mute" />
+                <label for="un-mute" class="unmute">
+                  <img
+                    src="media/images/muteIcon.png"
+                    alt="Mute_Icon"
+                    onclick="muteUnmute()"
+                  />
+                </label>
+                <label for="un-mute" class="mute">
+                  <img
+                    src="media/images/unmuteIcon.png"
+                    alt="Speaker_Icon"
+                    onclick="muteUnmute()"
+                  />
+                </label>
+              </div>
               <h2>Game Settings</h2>
-              <p id="foodLbl">   
-              </p>
-              <p id="monstersLbl">
-              </p>
-              <p id="timeLbl">
-              </p>
+              <p id="foodLbl"></p>
+              <p id="monstersLbl"></p>
+              <p id="timeLbl"></p>
               <h4>keyboard keys:</h4>
-              <p id="upLbl">
-              </p>
-              <p id="downLbl">
-              </p>
-              <p id="leftLbl">
-              </p>
-              <p id="rightLbl">
-              </p>
+              <p id="upLbl"></p>
+              <p id="downLbl"></p>
+              <p id="leftLbl"></p>
+              <p id="rightLbl"></p>
+            </div>
+            <button id="newRound" onclick="anotherRound()">
+              Another Round
+            </button>
           </div>
-          <button id="newRound" onclick="anotherRound()">
-            Another Round
-          </button>
         </div>
 
         <img
@@ -415,31 +438,71 @@
           alt="random moving score image"
         />
         <img id="clock" src="media/images/clock.png" alt="clock image" />
-        <img id="cure" src="media/images/cure.png" alt="cure image"/>
+        <img id="cure" src="media/images/cure.png" alt="cure image" />
         <audio id="loserSound">
-          <source src="media/sound/loser.mp3" type="audio/mpeg"/>
+          <source src="media/sound/loser.mp3" type="audio/mpeg" />
         </audio>
         <audio id="winSound">
           <source src="media/sound/winner.mp3" type="audio/mpeg"/>
         </audio>
         <audio id="backgroundSound">
-          <source src="media/sound/background.mpeg" type="audio/mpeg"/>
+          <source src="media/sound/background.mpeg" type="audio/mpeg" />
         </audio>
       </div>
 
-      <!-- check if need to replace to dialog and show modal -->
-      <!-- class="endGameModal" -->
       <dialog>
         <div id="endGameModal">
           <p id="modalContent">Diamic Content</p>
         </div>
       </dialog>
 
-      <!-- <dialog id="endGameModal">
-        <p id="modalContent">k</p>
-      </dialog> -->
-       
-      </div>
+      <dialog>
+        <div id="infoDialog">
+          On this page you can change the settings of the game instead of the
+          defaults. If you are an adventurous type, choose the random option and
+          you will be surprised to discover new settings that are randomly set
+          in each round. The game settings are divided into several categories:
+          <br />
+          <br />
+          <i class="fas fa-cogs"></i>
+          Food Category: You can set the amount of food in the game using the
+          slider bar, minimum is 50 balls and maxumum is 90 balls. Default value
+          is 70.
+          <br />
+          In addition, you can choose the color of each food type - 5 points
+          balls, 15 points balls and 25 points balls.
+          <br />
+          <br />
+          <i class="fas fa-cogs"></i>
+          Monsters Category: You can set the amount of monsters in the game
+          using the arrows inside the input box, minimum is 1 monster and
+          maxumum is 4 monsters. Default value is 1.
+          <br />
+          <br />
+          <i class="fas fa-cogs"></i>
+          Keyboard Category: You can set the movement keyboard buttons of the
+          Pacman to any buttons that you want. Note that all selected keys must
+          be different from each other, You can't choose the same key for
+          different move directions Default values are ArrowUp for up, ArrowDown
+          for down, ArrowLeft for left and ArrowRight for right.
+          <br />
+          <br />
+          <i class="fas fa-cogs"></i>
+          Time Category: You can set the duration of the game for each round.
+          Note that the minimum time is 60 seconds, and the maximun is 9 minutes
+          and 55 seconds. You can change the minutes and the seconds input boxes
+          seperatly depending on your choice. Default value is 60 seconds.
+          <br />
+          <br />
+          <i class="fas fa-cogs"></i>
+          Sound Category: You can set the volume of the game's background
+          playback for each round using the slider bar. Note that the minimum
+          volume power is 1 and the maximun is 100. Note that you can also
+          choose the sound off checbox which will set off all the sounds in the
+          game - background playback, loosing and winning alerts. Default value
+          is sound on and 50 volume power.
+        </div>
+      </dialog>
 
       <dialog>
         <div id="aboutPage">
@@ -460,23 +523,37 @@
           <br />
           <br />
           <i class="fas fa-bug"></i>
-          Creating the functionality of the monsters movement in an intelligent way.
+          Creating the functionality of the monsters movement in an intelligent
+          way.
           <br />
           <i class="fas fa-bug"></i>
-          Applying an object appearance functionality at certain times during the game (clock, fruit, extra life pill - bonus functionality).
+          Applying an object appearance functionality at certain times during
+          the game (clock, fruit, extra life pill - bonus functionality).
         </div>
       </dialog>
     </div>
 
-
     <footer id="footer">
-     You can share the game via:
+      <p id="share">You can share the game via:</p>
       <ul>
-        <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/" data-href="https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/"><i class="fab fa-facebook"></i></a></li>
-        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/"><i class="fab fa-linkedin-in"></i></a></li>
+        <li>
+          <a
+            href="https://www.facebook.com/sharer/sharer.php?u=https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/"
+            data-href="https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/"
+            ><i class="fab fa-facebook"></i
+          ></a>
+        </li>
+        <li>
+          <a
+            href="https://www.linkedin.com/shareArticle?mini=true&url=https://web-development-environments-2021.github.io/Assignment2_206348880_311427389/"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </li>
       </ul>
-     <a href="mailto:tomerkel@post.bgu.ac.il" class="mailus">contect us</a></p>
+      <a id="contact" href="mailto:tomerkel@post.bgu.ac.il" class="mailus"
+        >contact us
+        <i class="fa fa-envelope icon"></i>
+      </a>
     </footer>
   </body>
 </html>
-

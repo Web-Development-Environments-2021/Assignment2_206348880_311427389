@@ -1,13 +1,18 @@
 #settingsPage {
-  display: none;
-  /* height: 150%; */
-  width: 70%;
+  justify-content: space-between;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(236, 215, 255);
 }
 
 #accordion {
   font-family: "Exo";
   font-size: 18px;
-  /* font-weight: bold; */
+  font-weight: bold;
+  padding: 10px;
+  width: 50%;
+  margin-left: 42px;
 }
 
 #sound {
@@ -29,7 +34,6 @@
   opacity: 1;
 }
 
-/* change to image */
 .foodSlider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -44,4 +48,12 @@
   height: 25px;
   background: #4caf50;
   cursor: pointer;
+}
+
+#rightPageSettings {
+  background-image: url("../media/5.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 50%;
+  height: 100%;
 }
