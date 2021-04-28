@@ -1,7 +1,13 @@
 #settingsPage {
   display: none;
-  height: 150%;
-  width: 50%;
+  /* height: 150%; */
+  width: 70%;
+}
+
+#accordion {
+  font-family: "Exo";
+  font-size: 18px;
+  /* font-weight: bold; */
 }
 
 #sound {
