@@ -16,11 +16,11 @@ Enjoy :heart:
 :ok_hand: Modal Dialog windows - About, Game's messages<br />
 :ok_hand: Using jQuery validator - Sign Up form<br />
 :ok_hand: Using jQuery Accordion plugin for Settings Page<br />
-:ok_hand: Added Game's functionality: <br />
-  1. Pill that appears for certain periods of time during the game and adds life<br />
-  2. Clock that appears for certain periods of time during the game and adds extra 10 seconds<br/>
+:ok_hand: Game's functionality: Pill that appears for certain periods of time during the game and adds life<br />
+:ok_hand: Game's functionality: Clock that appears for certain periods of time during the game and adds extra 10 seconds<br />
+
   3. Different monsters images<br/>
-:ok_hand: Using diverse design elements - Hover transition (transforms), Icons, Emoji, Backgrounds Images<br />
+ ok_hand: Using diverse design elements - Hover transition (transforms), Icons, Emoji, Backgrounds Images<br />
 :ok_hand: Adding media - designed photos, Game's background playback and winning&loosing sounds<br />
 :ok_hand: Adding web icon page - instead of default<br />
 :ok_hand: Using Google Fonts instead of css defaults<br />
