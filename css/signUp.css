@@ -1,6 +1,6 @@
 #signUpPage,
 #loginPage {
-  background-image: url("../media/images/welcomeBG.jpg");
+  background-image: url("../media/images/Wallpaper.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -46,7 +46,6 @@ textarea {
 #loginbtn {
   border-radius: 15px;
   padding: 7px 30px;
-  /* margin-top: 10px; */
   border: 5px solid white;
   cursor: pointer;
   margin: 0 auto;
