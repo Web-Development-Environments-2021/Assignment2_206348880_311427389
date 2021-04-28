@@ -320,6 +320,9 @@ function startNewGame(){
 	newGame();
 }
 
+/**
+ * main function - according to games architecture
+ */
 function main(){
 	checkTimeLimit();
 	UpdatePosition();
