@@ -135,9 +135,11 @@
           id="loginForm"
           name="loginForm"
         >
+          <i class="fas fa-user-circle"></i>
           <label>User Name:</label>
           <input type="text" id="loginUserName" class="text"/>
 
+          <i class="fas fa-ghost"></i>
           <label>Password:</label>
           <input type="password" id="loginPassword" />
 
@@ -152,11 +154,39 @@
           <h3>INFO</h3>
           <div>
             On this page you can change the settings of the game instead of the defaults.
+            If you are an adventurous type, choose the random option and you will be surprised to discover new settings that are randomly set in each round.
             The game settings are divided into several categories: 
             <br/>
-            <i class="fa fa-envelope icon"></i>
-            Food Category: You can set the amount of food in the game using the slider bar, minimum is 50 balls and maxumum is 90 balls. 
-            <br>
+            <br/>
+            <i class="fas fa-cogs"></i>
+            Food Category: You can set the amount of food in the game using the slider bar, minimum is 50 balls and maxumum is 90 balls.
+            Default value is 70.
+            <br/>
+            In addition, you can choose the color of each food type - 5 points balls, 15 points balls and 25 points balls.
+            <br/>
+            <br/>
+            <i class="fas fa-cogs"></i>
+            Monsters Category: You can set the amount of monsters in the game using the arrows inside the input box, minimum is 1 monster and maxumum is 4 monsters.
+            Default value is 1.
+            <br/>
+            <br/>
+            <i class="fas fa-cogs"></i>
+            Keyboard Category: You can set the movement keyboard buttons of the Pacman to any buttons that you want.
+            Note that all selected keys must be different from each other, You can't choose the same key for different move directions
+            Default values are ArrowUp for up, ArrowDown for down, ArrowLeft for left and ArrowRight fir right.
+            <br/>
+            <br/>
+            <i class="fas fa-cogs"></i>
+            Time Category: You can set the duration of the game for each round. Note that the minimum time is 60 seconds, there is no maximun limit.
+            You can change the minutes and the seconds input boxes seperatly depending on your choice.
+            Default value is 60 seconds.
+            <br/>
+            <br/>
+            <i class="fas fa-cogs"></i>
+            Sound Category: You can set the volume of the game's background playback for each round using the slider bar. Note that the minimum volume power is 1 and the maximun is 100.
+            Note that you can also choose the sound off checbox which will set off all the sounds in the game - background playback, loosing and winning alerts.
+            Default value is sound on and 50 volume power.
+
 
           </div>
 
@@ -301,6 +331,10 @@
       <div id="gamePage">
         <div id="leftGamePage" class="leftRight"> 
           <div id="gameInfoContainer">
+            <div id="user" class="gameInfo">
+              <label for="lblUser">USER NAME:</label>
+              <input id="lblUser" type="text" class="gameLbl"/>
+            </div> 
             <div id="score" class="gameInfo">
               <label for="lblScore">SCORE:</label>
               <input id="lblScore" type="text" class="gameLbl"/>
@@ -312,10 +346,6 @@
             <div id="life" class="gameInfo">
               <label for="lblLife">LIFE:</label>
               <input id="lblLife" type="text" class="gameLbl"/>
-            </div> 
-            <div id="user" class="gameInfo">
-              <label for="lblUser">USER NAME:</label>
-              <input id="lblUser" type="text" class="gameLbl"/>
             </div> 
           </div>
 
@@ -334,14 +364,14 @@
             </label>
           </div>
             <h2>Game Settings</h2>
-            <br>
+            <!-- <br/> -->
             <p id="foodLbl">   
             </p>
             <p id="monstersLbl">
             </p>
             <p id="timeLbl">
             </p>
-            <br>
+            <!-- <br> -->
             <h4>keyboard keys:</h4>
             <p id="upLbl">
             </p>
